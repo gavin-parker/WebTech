@@ -5,13 +5,34 @@ html, body{
   padding: 0;
   margin:0;
 }
-header{
-  position:absolute;
+h1{
+  margin:auto;
+  margin-top:0;
+}
+.title-image{
   width: 100%;
-  background-color: #FFF176;
-  padding: 0;
-  margin: auto;
-  display: inline;
+  height: 100%;
+  position:absolute;
+  background-color: rgb(58, 155, 172);
+  text-align:center;
+  background-image: url('https://i.imgur.com/d59jgJM.jpg');
+  display: table-cell;
+  vertical-align: middle;
+}
+.title-image p{
+  vertical-align: middle;
+  text-align: left;
+  font-size: 20px;
+  float: left;
+  margin-left: 20%;
+  margin-top: 15%;
+  color: white;
+}
+.page-header{
+  text-align: center;
+  background-color:#FFC107;
+  margin-top:0;
+  padding-top:0;
 }
 .navButton{
   float:right;
@@ -28,6 +49,7 @@ header{
   width:70%;
   height:100%;
   margin:auto;
+  margin-top: 50%;
 }
 .card{
   margin:auto;

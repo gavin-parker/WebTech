@@ -1,8 +1,7 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 html, body{
   font-family: 'Open Sans', sans-serif;
-  background-color: #ECEFF1;
-  padding: 0;
+        padding: 0;
   margin:0;
   height: 100%;
   width: 100%;
@@ -37,6 +36,14 @@ h1{
   overflow: hidden;
   padding: 0;
 }
+.title-carousel{
+  max-height: 580px;
+  text-align:center;
+  vertical-align: middle;
+  overflow: hidden;
+  padding: 0;
+}
+
 .title-image p{
   vertical-align: middle;
   text-align: left;
@@ -67,7 +74,8 @@ h1{
   width:70%;
   height:100%;
   margin:auto;
-  margin-top: 1%;
+  margin-top: 5%;
+
 }
 .card{
   margin:auto;

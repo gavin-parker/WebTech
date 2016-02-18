@@ -16,7 +16,7 @@ var ports = [80, 443];
 // The most common standard file extensions are supported.
 // The most common non-standard file extensions are excluded, with a message.
 var types = {
-    '.html' : 'text/html, application/xhtml+xml',
+    '.html' : 'text/html',
     '.css'  : 'text/css',
     '.js'   : 'application/javascript',
     '.png'  : 'image/png',
@@ -30,7 +30,6 @@ var types = {
     '.json' : 'application/json',
     '.pdf'  : 'application/pdf',
     '.txt'  : 'text/plain', // plain text only
-    '.xhtml': '#not suitable for dual delivery, use .html',
     '.htm'  : '#proprietary, non-standard, use .html',
     '.jpg'  : '#common but non-standard, use .jpeg',
     '.rar'  : '#proprietary, non-standard, platform dependent, use .zip',

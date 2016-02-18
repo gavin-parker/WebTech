@@ -24,23 +24,33 @@
 
 
 <body ng-controller="FeedCtrl" ng-app="webApp">
+  <div class="nav-bar">
+      <div class="nav-bar-head">
+          HOLIDAY RECOMMENDER
+      </div>
+      <div class="nav-bar-tabs">
+
+
+        <div class="tabs">Contact Us</div>
+        <div class="tabs">Your Story</div>
+        <div class="tabs">Experiences</div>
+        <div class="tabs">About</div>
+
+
+
+      </div>
+
+    </div>
   <div class="title-carousel">
-  <uib-carousel interval="3000" no-wrap="false" >
+
+  <uib-carousel interval="2000" no-wrap="false" >
     <uib-slide ng-repeat="hol in holidays" active="hol.active" class="slide">
-            <img ng-src="{{hol.Images[0]}}" style="margin:auto;">
-            <div class="carousel-caption">
-              <h1>An important site - for important people</h1>
-              <p><i>I can't think of a quote - socrates</i></p>
-            </div>
+      <span><h1>{{hol.Location}}</h1></span>
+            <img ng-src="{{hol.Images[0]}}" style="margin:auto;" class="carousel-img"/>
           </uib-slide>
   </uib-carousel>
-</div>
-  <div class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-     <a class="navbar-brand" href="#">Holiday Recommender</a>
-   </div>
-  </div>
 
+</div>
 
   <div class="feed">
   <div class="card" ng-repeat="hol in holidays">

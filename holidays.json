@@ -1,7 +1,8 @@
 {"holidays":[
-  {"Location": "Bali", "Price": "4", "Weather": 5,"active":true, "Images":["http://bali.hardrockhotels.net/content/header_13098_1.jpg"], "Description":
+
+  {"Location": "Bali", "Price": "4", "Weather": 5,"active":true, "Images":["img/bali.jpg"], "Description":
     "Bali is an island and province of Indonesia. The province includes the island of Bali and a few smaller neighbouring islands, notably Nusa Penida, Nusa Lembongan, and Nusa Ceningan." },
-  {"Location": "Mexico", "Price": "3", "Weather": 5,"active":false, "Images":["http://handluggageonly.co.uk/wp-content/uploads/2014/11/Wonderful-beachs-in-Cancun-s.jpg"], "Description":
+  {"Location": "Mexico", "Price": "3", "Weather": 5,"active":false, "Images":["https://lh6.ggpht.com/lCnYbMcqYgOImUM3cLDLk_npYB89ffKnzjrvpnjFb89NZ_lXJFrzNQ_muFX56bNUS1rH=h900"], "Description":
     "Mexico (official name: Estados Unidos Mexicanos[13]) is a country in North America. Mexico is south of Texas and other American states. Guatemala and Belize are south of Mexico. Mexico is between the Pacific Ocean and the Gulf of Mexico." },
   {"Location": "Norway", "Price": "3", "Weather": 3,"active":false, "Images":["http://algoos.com/wp-content/uploads/2015/08/norway-interns.jpg"], "Description":
     "Norway (or Noreg), officially the Kingdom of Norway, is a sovereign and unitary monarchy whose territory comprises the western portion of the Scandinavian Peninsula plus the island Jan Mayen and the archipelago of Svalbard." }

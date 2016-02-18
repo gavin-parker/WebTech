@@ -21,24 +21,44 @@
 
 
 <body ng-controller="FeedCtrl" ng-app="webApp">
+   
   <img  class="background"/>
+  <div class="nav-bar">
+      <div class="nav-bar-head">
+          HOLIDAY RECOMMENDER
+      </div>
+      <div class="nav-bar-tabs">
+        
+        
+        <div class="tabs">Contact Us</div>
+        <div class="tabs">Your Story</div> 
+        <div class="tabs">Experiences</div> 
+        <div class="tabs">About</div>
+        
+       
+        
+      </div>
+                
+    </div>
   <div class="title-carousel">
-
-  <uib-carousel interval="5000" no-wrap="false" >
+      
+  <uib-carousel interval="2000" no-wrap="false" >
+      
     <uib-slide ng-repeat="hol in holidays" active="hol.active">
+        
             <img ng-src="{{hol.Images[0]}}" style="margin:auto;">
+                BALI
             <div class="carousel-caption">
               <h4>{{hol.Location}}</h4>
               <p>{{hol.Weather}}</p>
+                JJHJH
             </div>
           </uib-slide>
   </uib-carousel>
+      
 </div>
-  <div class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-     <a class="navbar-brand" href="#">Holiday Recommender</a>
-   </div>
-  </div>
+    
+  
 
 
   <div class="feed">

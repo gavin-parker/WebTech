@@ -37,13 +37,45 @@ h1{
   padding: 0;
 }
 .title-carousel{
-  max-height: 580px;
+  //max-height: 580px;
+  height: 100%;
   text-align:center;
   vertical-align: middle;
   overflow: hidden;
   padding: 0;
 }
-
+.nav-bar {
+    height: 7%;
+    width: 100%;
+    z-index: 1;
+    position: fixed;
+    background-color: rgba(0,0,0,0.4);
+    /* Adds shadow to the bottom of the bar */
+-webkit-box-shadow: 0px 0px 8px 0px #000000;
+-moz-box-shadow: 0px 0px 8px 0px #000000;
+box-shadow: 0px 0px 8px 0px #000000;
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 15pt;
+    color: white;
+    font-weight: bold;
+    
+}
+.nav-bar-head {
+    width: 50%;
+    height: 100%;
+    padding: 0.5% 2%;
+    float: left;
+}
+.nav-bar-tabs {
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+.tabs {
+    float: right;
+    padding: 1% 2%;
+    height: 100%;
+}
 .title-image p{
   vertical-align: middle;
   text-align: left;

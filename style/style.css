@@ -6,6 +6,11 @@ html, body{
   height: 100%;
   width: 100%;
 }
+body{
+    /*background-image: url('https://i.imgur.com/d59jgJM.jpg');*/
+    background-size: cover;
+    background-color: #E3F2FD;
+}
 h1{
   margin:auto;
   margin-top:0;

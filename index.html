@@ -24,12 +24,12 @@
   <img  class="background"/>
   <div class="title-carousel">
 
-  <uib-carousel interval="5000" no-wrap="false" >
+  <uib-carousel interval="3000" no-wrap="false" >
     <uib-slide ng-repeat="hol in holidays" active="hol.active">
             <img ng-src="{{hol.Images[0]}}" style="margin:auto;">
             <div class="carousel-caption">
-              <h4>{{hol.Location}}</h4>
-              <p>{{hol.Weather}}</p>
+              <h1>An important site - for important people</h1>
+              <p><i>I can't think of a quote - socrates</i></p>
             </div>
           </uib-slide>
   </uib-carousel>
@@ -50,7 +50,19 @@
          Weather: {{hol.Weather}} <br/>
          Price: {{hol.Price}} <br/>
          {{hol.Description}}
+         <button class="arrow" ng-click="hol.showing = !hol.showing">&#x25BC;</button>
+
        </p>
+    </div>
+    <div uib-collapse="!hol.showing" class="details">
+      <p>
+        Some more details here</br>
+        Some more details here</br>
+        Some more details here</br>
+        Some more details here</br>
+        Some more details here</br>
+
+      </p>
     </div>
   </div>
   </div>

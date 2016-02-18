@@ -6,9 +6,12 @@
 <![endif]-->
 <head>
   <meta charset="UTF-8" />
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
   <script src="js/frameworks/angular.min.js"></script>
-  <script src="js/frameworks/angular-animate.min.js"></script>
   <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
+  <script src="js/frameworks/angular-animate.min.js"></script>
+
   <script src="js/app.js"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
@@ -22,9 +25,8 @@
 
 <body ng-controller="FeedCtrl" ng-app="webApp">
   <div class="title-carousel">
-
   <uib-carousel interval="3000" no-wrap="false" >
-    <uib-slide ng-repeat="hol in holidays" active="hol.active">
+    <uib-slide ng-repeat="hol in holidays" active="hol.active" class="slide">
             <img ng-src="{{hol.Images[0]}}" style="margin:auto;">
             <div class="carousel-caption">
               <h1>An important site - for important people</h1>
@@ -43,24 +45,18 @@
   <div class="feed">
   <div class="card" ng-repeat="hol in holidays">
     <img class="card-img-top" src="{{hol.Images[0]}}" />
-    <div class="card-block">
+    <div class="card-block" ng-click="hol.showing = !hol.showing">
       <h3 class="card-title">{{hol.Location}}</h3>
       <p class="card-text">
          Weather: {{hol.Weather}} <br/>
          Price: {{hol.Price}} <br/>
          {{hol.Description}}
-         <button class="arrow" ng-click="hol.showing = !hol.showing">&#x25BC;</button>
-
        </p>
     </div>
     <div uib-collapse="!hol.showing" class="details">
       <p>
-        Some more details here</br>
-        Some more details here</br>
-        Some more details here</br>
-        Some more details here</br>
-        Some more details here</br>
-
+        Price: <uib-rating max="5" ng-model="hol.Price" readonly="true" class="price"></uib-rating><br/>
+        Weather: <uib-rating max="5" ng-model="hol.Weather" readonly="true" class="weather"></uib-rating><br/>
       </p>
     </div>
   </div>

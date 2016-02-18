@@ -50,14 +50,21 @@ h1{
   overflow: hidden;
   padding: 0;
 }
-.title-carousel{
-  max-height: 580px;
-  text-align:center;
-  vertical-align: middle;
-  overflow: hidden;
-  padding: 0;
+.slide{
+  height: 600px;
 }
+.slide img{
+  object-fit: cover;
 
+}
+.price{
+  color:#4CAF50;
+  font-size: 20px;
+}
+.weather{
+  color:#FDD835;
+  font-size: 20px;
+}
 .title-image p{
   vertical-align: middle;
   text-align: left;
@@ -95,10 +102,17 @@ h1{
   margin:auto;
   margin-bottom: 1%;
   background-color: white;
-  padding: 1%;
+  padding:0;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .card img{
   width:100%;
+  margin:0px;
+}
+.card-text{
+  margin-left: 2%;
+}
+.card-title{
+  margin-left: 2%;
 }

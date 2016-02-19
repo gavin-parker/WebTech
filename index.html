@@ -63,7 +63,7 @@
          {{hol.Description}}
        </p>
     </div>
-    <div uib-collapse="!hol.showing" class="details">
+    <div uib-collapse="!hol.showing" class="details" ng-click="hol.showing = !hol.showing">
       <p>
         Price: <uib-rating max="5" ng-model="hol.Price" readonly="true" class="price"></uib-rating><br/>
         Weather: <uib-rating max="5" ng-model="hol.Weather" readonly="true" class="weather"></uib-rating><br/>

@@ -64,10 +64,17 @@
        </p>
     </div>
     <div uib-collapse="!hol.showing" class="details" ng-click="hol.showing = !hol.showing">
-      <p>
-        Price: <uib-rating max="5" ng-model="hol.Price" readonly="true" class="price"></uib-rating><br/>
-        Weather: <uib-rating max="5" ng-model="hol.Weather" readonly="true" class="weather"></uib-rating><br/>
-      </p>
+
+      <div class="review" ng-repeat="rev in hol.Reviews">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>Barry Johnson</h4>
+          <p>
+
+          {{rev}} bla blah bla, blah blah bla bla bla <br/> blaaaaaaaaaaah blah blah? bla bla blah.<br/>
+          Price:   <span class="price"> {{toPounds(hol.Price)}}</span><br/>
+          Weather: <uib-rating max="5" ng-model="hol.Weather" readonly="true" class="weather"></uib-rating><br/>
+        </p>
+      </div>
+      </div>
     </div>
   </div>
   </div>

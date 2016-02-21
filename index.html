@@ -52,19 +52,20 @@
     <!-- Wrapper for slides !-->
     <div class="carousel-inner" role="listbox">
       <div class="item active" id="item1">
-        RELAX <br>IN BALI
+        RELAX <br/>IN BALI
       </div>
 
       <div class="item" id="item2">
-        EXPLORE<br> THE ALPS
+        EXPLORE<br/> THE ALPS
       </div>
 
       <div class="item" id="item3">
-
+        LOOK AT<br/>
+        THIS LOVELY FIELD
       </div>
 
       <div class="item" id="item4">
-       CAMP UNDER<br> NORTHERN LIGHTS
+       CAMP UNDER<br/> NORTHERN LIGHTS
       </div>
     </div>
 
@@ -81,9 +82,9 @@
 
 
   <div class="feed">
-  <div class="card" ng-repeat="hol in holidays">
+  <div class="card" ng-repeat="hol in holidays" ng-click="hol.showing = !hol.showing">
     <img class="card-img-top" src="{{hol.Images[0]}}" />
-    <div class="card-block" ng-click="hol.showing = !hol.showing">
+    <div class="card-block" >
       <h3 class="card-title">{{hol.Location}}</h3>
       <p class="card-text">
          Weather: {{hol.Weather}} <br/>

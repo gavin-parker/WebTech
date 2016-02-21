@@ -6,18 +6,22 @@
 <![endif]-->
 <head>
   <meta charset="UTF-8" />
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
   <script src="js/frameworks/angular.min.js"></script>
-  <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
   <script src="js/frameworks/angular-animate.min.js"></script>
-
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+  
   <script src="js/app.js"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans' rel='stylesheet' type='text/css'>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/style.css" type="text/css" />
 
+    
+  
   <title>Holiday Recommender</title>
 
 </head>
@@ -29,18 +33,83 @@
           HOLIDAY RECOMMENDER
       </div>
       <div class="nav-bar-tabs">
-
-
         <div class="tabs">Contact Us</div>
         <div class="tabs">Your Story</div>
         <div class="tabs">Experiences</div>
         <div class="tabs">About</div>
+      </div>
+  </div>
+    
+ <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
 
-
-
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active" id="item1">
+        RELAX <br>IN BALI
       </div>
 
+      <div class="item" id="item2">
+        EXPLORE<br> THE ALPS
+      </div>
+    
+      <div class="item" id="item3">
+       
+      </div>
+
+      <div class="item" id="item4">
+       CAMP UNDER<br> NORTHERN LIGHTS
+      </div>
     </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+     <!--
+    <div id="my-carousel" class="title-carousel">
+      <ul id="carousel-item">
+          <li id="item1" class="item1">Item One</li>
+          <li id="item2" class="item2">Item Two</li>
+          <li id="item3" class="item3">Item Three</li>
+          <li id="item4" class="item4">Item Four</li>
+      
+      
+        </ul>
+    </div>
+    
+    <script>
+    $(document).ready(function(){
+	// Set the interval to be 5 seconds
+        /*
+	var t = setInterval(function(){
+		$("#my-carousel ul").animate({marginLeft:-1376},1000,function(){
+			$(this).find("li:last").after($(this).find("li:first"));
+			$(this).css({marginLeft:0});
+		})
+	},5000);
+    */
+        var i=1;
+        var t = setInterval(function() {
+        $("#item"+(i%4)).fadeOut(2000);
+       // $("#item"+((i+1)%4)).fadeIn(2000);
+            i = i + 1;
+    },5000);
+    });
+    </script>
+   
   <div class="title-carousel">
 
   <uib-carousel interval="2000" no-wrap="false" >
@@ -51,6 +120,7 @@
   </uib-carousel>
 
 </div>
+-->
 
   <div class="feed">
   <div class="card" ng-repeat="hol in holidays">
@@ -71,6 +141,5 @@
     </div>
   </div>
   </div>
-
 </body>
 </html>

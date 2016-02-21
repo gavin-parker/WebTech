@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" >
-
 <!--[if IE]>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 <![endif]-->
 <head>
   <meta charset="UTF-8" />
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-
   <script src="js/frameworks/angular.min.js"></script>
-  <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
   <script src="js/frameworks/angular-animate.min.js"></script>
-
+  <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
   <script src="js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans' rel='stylesheet' type='text/css'>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/style.css" type="text/css" />
+
+
 
   <title>Holiday Recommender</title>
 
@@ -29,28 +33,52 @@
           HOLIDAY RECOMMENDER
       </div>
       <div class="nav-bar-tabs">
-
-
         <div class="tabs">Contact Us</div>
         <div class="tabs">Your Story</div>
         <div class="tabs">Experiences</div>
         <div class="tabs">About</div>
+      </div>
+  </div>
 
+ <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
 
+    <!-- Wrapper for slides !-->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active" id="item1">
+        RELAX <br>IN BALI
+      </div>
+
+      <div class="item" id="item2">
+        EXPLORE<br> THE ALPS
+      </div>
+
+      <div class="item" id="item3">
 
       </div>
 
+      <div class="item" id="item4">
+       CAMP UNDER<br> NORTHERN LIGHTS
+      </div>
     </div>
-  <div class="title-carousel">
 
-  <uib-carousel interval="2000" no-wrap="false" >
-    <uib-slide ng-repeat="hol in holidays" active="hol.active" class="slide">
-      <span><h1>{{hol.Location}}</h1></span>
-            <img ng-src="{{hol.Images[0]}}" style="margin:auto;" class="carousel-img"/>
-          </uib-slide>
-  </uib-carousel>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 
-</div>
 
   <div class="feed">
   <div class="card" ng-repeat="hol in holidays">
@@ -71,13 +99,12 @@
 
           {{rev}} bla blah bla, blah blah bla bla bla <br/> blaaaaaaaaaaah blah blah? bla bla blah.<br/>
           Price:   <span class="price"> {{toPounds(hol.Price)}}</span><br/>
-          Weather: <uib-rating max="5" ng-model="hol.Weather" readonly="true" class="weather"></uib-rating><br/>
+          Weather: <span class="weather"> {{toSuns(hol.Weather)}}</span><br/>
         </p>
       </div>
       </div>
     </div>
   </div>
   </div>
-
 </body>
 </html>

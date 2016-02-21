@@ -7,10 +7,12 @@ angular.module('webApp', ['ui.bootstrap', 'ngAnimate'])
   var recieveHolidays = function(result){
     $scope.holidays = result.holidays;
     console.log($scope.holidays);
-
   };
-  $http.get('holidays.json').success(recieveHolidays);
 
+  $http.get('holidays.json').success(recieveHolidays);
+  $scope.showDetails = function(holiday){
+    console.log("hi");
+  };
 
   $scope.toPounds = function(price){
     var out = "";
@@ -19,6 +21,16 @@ angular.module('webApp', ['ui.bootstrap', 'ngAnimate'])
     }
     return out;
   };
+  $scope.toSuns = function(weather){
+    var out = "";
+    for(var i=0;i<weather;i++){
+      out +=  "\u2600";
+    }
+    return out;
+  };
+
+
+
 
 });
 };

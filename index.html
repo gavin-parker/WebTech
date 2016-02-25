@@ -34,6 +34,7 @@
           HOLIDAY RECOMMENDER
       </div>
       <div class="nav-bar-tabs">
+          <div class="tabs"><a alink="white" href="feed.html">Top Destinations</a></div>
           <div class="tabs"><a alink="white" href="#">Contact Us</a></div>
           <div class="tabs"><a alink="white" href="#my-story">Your Story</a></div>
           <div class="tabs"><a alink="white" href="#diaries">Diaries</a></div>
@@ -109,19 +110,19 @@
       </div>
     </div>
 
-    <div id="my-story" class="my-story">
+    <div id="my-story" class="my-story" ng-controller="FormCtrl">
         <div id="my-story-title" class="my-story-title">
             SHARE <br> YOUR STORY
         </div>
 
         <div id="story-form" class="story-form">
-        <form action="demo_form.asp" >
-            <input class="form-components" type="text" name="fname" placeholder="Name"><br><br>
-            <input class="form-components" type="text" name="lname" placeholder="Holiday Destination"><br><br>
-            <input class="form-components" type="text" name="lname" placeholder="Email"><br><br>
-            <input class="form-components" type="text" name="lname" placeholder="Phone"><br><br>
+        <form >
+            <input class="form-components" ng-style="{{style.Name}}" type="text" name="fname" ng-model="story.Name" placeholder="Name"><br><br>
+            <input class="form-components" ng-style="{{style.Dest}}" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination"><br><br>
+            <input class="form-components" ng-style="{{style.Email}}" type="text" name="lname" ng-model="story.Email" placeholder="Email"><br><br>
+            <input class="form-components" ng-style="{{style.Phone}}" type="text" name="lname" ng-model="story.Phone" placeholder="Phone"><br><br>
             <textarea class="form-components" rows="5" cols="20" placeholder="Your Experience"></textarea><br><br>
-            <input class="form-components submit" type="submit" value="SUBMIT">
+            <button class="form-components submit"  ng-model="story" ng-click="submit(story)"> {{buttonText}} </button>
         </form>
         </div>
 
@@ -141,31 +142,7 @@
 </div>
 -->
 
-  <div class="feed">
-  <div class="card" ng-repeat="hol in holidays" ng-click="hol.showing = !hol.showing">
-    <img class="card-img-top" src="{{hol.Images[0]}}" />
-    <div class="card-block" >
-      <h3 class="card-title">{{hol.Location}}</h3>
-      <p class="card-text">
-         Weather: {{hol.Weather}} <br/>
-         Price: {{hol.Price}} <br/>
-         {{hol.Description}}
-       </p>
-    </div>
-    <div uib-collapse="!hol.showing" class="details" ng-click="hol.showing = !hol.showing">
 
-      <div class="review" ng-repeat="rev in hol.Reviews">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>Barry Johnson</h4>
-          <p>
-
-          {{rev}} bla blah bla, blah blah bla bla bla <br/> blaaaaaaaaaaah blah blah? bla bla blah.<br/>
-          Price:   <span class="price"> {{toPounds(hol.Price)}}</span><br/>
-          Weather: <span class="weather"> {{toSuns(hol.Weather)}}</span><br/>
-        </p>
-      </div>
-      </div>
-    </div>
-  </div>
   </div>
 <script>
     $(function() {

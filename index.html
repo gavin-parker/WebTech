@@ -16,7 +16,7 @@
   <script src="js/app.js"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/style.css" type="text/css" />
 
@@ -28,18 +28,20 @@
 
 
 <body ng-controller="FeedCtrl" ng-app="webApp">
+
   <div class="nav-bar">
       <div class="nav-bar-head">
           HOLIDAY RECOMMENDER
       </div>
       <div class="nav-bar-tabs">
-        <div class="tabs">Contact Us</div>
-        <div class="tabs">Your Story</div>
-        <div class="tabs">Experiences</div>
-        <div class="tabs">About</div>
+          <div class="tabs"><a alink="white" href="#">Contact Us</a></div>
+          <div class="tabs"><a alink="white" href="#my-story">Your Story</a></div>
+          <div class="tabs"><a alink="white" href="#diaries">Diaries</a></div>
+          <div class="tabs"><a alink="white" href="#">About</a></div>
       </div>
+
   </div>
-    
+
  <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -52,7 +54,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active" id="item1">
-        RELAX <br>IN BALI
+        ENJOY SUNSET <br>AT BALI
       </div>
 
       <div class="item" id="item2">
@@ -60,7 +62,7 @@
       </div>
     
       <div class="item" id="item3">
-       
+       FEEL <br>THE FRESHNESS<br> OF GERMANY
       </div>
 
       <div class="item" id="item4">
@@ -78,38 +80,54 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-     <!--
-    <div id="my-carousel" class="title-carousel">
-      <ul id="carousel-item">
-          <li id="item1" class="item1">Item One</li>
-          <li id="item2" class="item2">Item Two</li>
-          <li id="item3" class="item3">Item Three</li>
-          <li id="item4" class="item4">Item Four</li>
-      
-      
-        </ul>
+    <div id="diaries">
+       <div  class="diary1">
+        <div id="diary1-text">
+        "We found love in Thailand"  
+           <br><font size="5pt" align="right">- John & Sophie</font>
+            </div>
+      </div>
+       <div id="diary2" class="diary2">
+        <div id="diary2-text">
+        "Best trip of my life !
+           <br>Thank you Holiday Recommender"
+           <br><font size="5pt" align="right">- Sam</font>
+        </div>
+      </div>
+      <div class="diary3">
+        <div id="diary3-text">
+        "I found inner peace in <br>New Zealand
+           <br><font size="5pt" align="right">- Amy</font>
+          </div>
+      </div>
+      <div class="diary4">
+        <div id="diary4-text">
+        "There's nothing like <br>partying in Ibiza
+           <br><font size="5pt" align="right">- Roxanne</font>
+          </div>
+      </div>
     </div>
     
-    <script>
-    $(document).ready(function(){
-	// Set the interval to be 5 seconds
-        /*
-	var t = setInterval(function(){
-		$("#my-carousel ul").animate({marginLeft:-1376},1000,function(){
-			$(this).find("li:last").after($(this).find("li:first"));
-			$(this).css({marginLeft:0});
-		})
-	},5000);
-    */
-        var i=1;
-        var t = setInterval(function() {
-        $("#item"+(i%4)).fadeOut(2000);
-       // $("#item"+((i+1)%4)).fadeIn(2000);
-            i = i + 1;
-    },5000);
-    });
-    </script>
-   
+    <div id="my-story" class="my-story">
+        <div id="my-story-title" class="my-story-title">
+            SHARE <br> YOUR STORY
+        </div>
+        
+        <div id="story-form" class="story-form">
+        <form action="demo_form.asp" >
+            <input class="form-components" type="text" name="fname" placeholder="Name"><br><br>
+            <input class="form-components" type="text" name="lname" placeholder="Holiday Destination"><br><br>
+            <input class="form-components" type="text" name="lname" placeholder="Email"><br><br>
+            <input class="form-components" type="text" name="lname" placeholder="Phone"><br><br>
+            <textarea class="form-components" rows="5" cols="20" placeholder="Your Experience"></textarea><br><br>
+            <input class="form-components submit" type="submit" value="SUBMIT">
+        </form>
+        </div>
+
+
+    </div>
+    
+   <!--
   <div class="title-carousel">
 
   <uib-carousel interval="2000" no-wrap="false" >
@@ -141,5 +159,21 @@
     </div>
   </div>
   </div>
+<script>
+    $(function() {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>

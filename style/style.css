@@ -15,7 +15,14 @@ h1{
   margin:auto;
   margin-top:0;
 }
-
+a {
+    color: white;
+    transition: all .5s;
+}
+a:hover {
+    color: orangered;
+    text-decoration: none;
+}
 .arrow{
   color: rgb(44, 95, 195);
   cursor:pointer;
@@ -52,18 +59,118 @@ h1{
     background-size: 100%;
 }
 #item1 {
-    background: url(../img/bali.jpg);
+    background: url(../img/bali.png);
     background-size: 100%;
 }
 #item2 {
     background: url(../img/alps.jpg);
 }
 #item3 {
-    background: url(../img/landscape.jpg);
+    background: url(../img/meadows.png);
 }
 #item4 {
     background: url(../img/aurora.jpg);
     background-size: 100%;
+}
+#diaries {
+     width: 100%;
+    height: 100%;
+   
+}
+.diary1, .diary2, .diary3, .diary4 {
+    width: 50%;
+    height: 50%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 4%;
+    font-family: 'Montserrat';
+    font-size: 20pt;
+    color: white;
+    float: left;
+    
+}
+.diary1 {
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/couple.png);
+    background-size: 100%;  
+     -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+.diary1:hover {
+    background-size: 100%;  
+}
+#diary1-text {
+    display: none;
+}
+#diary2-text {
+    display: none;
+}
+#diary3-text {
+    display: none;
+}
+#diary4-text {
+    display: none;
+}
+.diary2 {
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/friends.png);
+    background-size: 100%;
+    text-align: right;
+}
+.diary3 {
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/amy.png) no-repeat;
+    background-size: 100%;
+   
+}
+.diary4 {
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/ibiza.png);
+    background-size: 100%;
+    text-align: right;
+}
+.my-story {
+    width: 100%;
+    height: 100%;
+    background: url(../img/diary.png);
+    font-family: 'Montserrat';
+    font-size: 50pt;
+    color: white;
+    
+   
+    
+}
+.my-story-title {
+  padding-left: 4%;
+  padding-top: 4%;
+  float: left;
+  width: 50%;
+  height: 100%;
+  font-weight: bold;
+}
+.story-form {
+    font-size: 17pt;
+    padding-top: 6%;
+    text-align: center;
+    float: right;
+    width: 50%;
+    height: 100%;
+}
+.form-components {
+    border: 5px;
+    border-style: solid;
+    border-color: white;
+    color: black;
+    background: white;
+}
+.submit {
+    border-left: 50px;
+    border-right: 50px;
+    border-style: solid;
+    border-color: white;
+    transition: all .4s;
+}
+.submit:hover {
+    background: forestgreen;
+    border-color: forestgreen;
+    color: white;
 }
 .slide span{
   top: 100px;
@@ -73,20 +180,21 @@ h1{
   float:left;
 }
 .nav-bar {
-    height: 7%;
+    height: 6%;
     width: 100%;
     z-index: 1;
     position: fixed;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.6);
     /* Adds shadow to the bottom of the bar */
 -webkit-box-shadow: 0px 0px 8px 0px #000000;
 -moz-box-shadow: 0px 0px 8px 0px #000000;
 box-shadow: 0px 0px 8px 0px #000000;
     font-family: 'Open Sans' , sans-serif;
-    font-size: 15pt;
+    font-size: 13pt;
     color: white;
     font-weight: bold;
     margin-top: 0;
+    -webkit-backface-visibility: hidden;
 
 }
 .nav-bar-head {
@@ -94,6 +202,7 @@ box-shadow: 0px 0px 8px 0px #000000;
     height: 100%;
     padding: 0.5% 2%;
     float: left;
+    color: darkorange;
 }
 .nav-bar-tabs {
     width: 50%;

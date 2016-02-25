@@ -46,11 +46,10 @@
 
   <div class = "sidebar">
     <input class="form-control" type="search" ng-model="query.text" placeholder="Search"/>
-    <button class="btn btn-primary" ng-click="filter(query)" >Filter</button>
   </div>
 
   <div class="feed">
-  <div class="card" ng-repeat="hol in holidays" ng-click="hol.showing = !hol.showing">
+  <div class="card" ng-repeat="hol in holidays | filter:query.text" ng-click="hol.showing = !hol.showing">
     <img class="card-img-top" src="{{hol.Images[0]}}" />
     <div class="card-block" >
       <h3 class="card-title">{{hol.Location}}</h3>

@@ -49,7 +49,7 @@ a:hover {
   height: 100%;
   background-color: rgb(58, 155, 172);
   text-align:center;
-  background-image: url('https://i.imgur.com/d59jgJM.jpg');
+  /*background-image: url('https://i.imgur.com/d59jgJM.jpg');*/
   vertical-align: middle;
   overflow: hidden;
   padding: 0;
@@ -76,20 +76,20 @@ a:hover {
 }
 #item1 {
     background: url(../img/bali.png);
-    background-size: 100%;
+    background-size:cover;
 }
 #item2 {
     background: url(../img/alps.jpg);
-    background-size: 100%;
+    background-size: cover;
 
 }
 #item3 {
     background: url(../img/meadows.png);
-    background-size: 100%;
+    background-size: cover;
 }
 #item4 {
     background: url(../img/aurora.jpg);
-    background-size: 100%;
+    background-size: cover;
 }
 #diaries {
      width: 100%;

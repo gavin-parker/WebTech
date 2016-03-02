@@ -1,10 +1,8 @@
 var start = function(){
   "use strict";
-  angular.module('webApp', ['ui.bootstrap', 'ngAnimate'])
+  angular.module('webApp', ['ui.bootstrap', 'ngAnimate', 'duScroll'])
   .controller('FeedCtrl', function($scope, $http){
     $scope.test = 'hi';
-
-
     $scope.filter = function(query){
       console.log(query);
     };
@@ -71,6 +69,9 @@ var start = function(){
       }
       return true;
     };
+  })
+  .controller('MainCtrl', function($scope){
+
   });
 };
 start();

@@ -103,6 +103,7 @@ function serve(request, response) {
     var file = request.url;
     if(request.method == "POST"){
       handlePOST(request);
+      return;
     }
     if (file == '/') return redirect(response, prefix + '/');
     if (! starts(file,prefix)) return fail(response, NotFound);
@@ -140,14 +141,17 @@ function handlePOST(request){
 //handles comment submission
 function submitComment(comment, username , locID ){
   var holidays = JSON.parse([fs.readFileSync("holidays.json", "ascii")]);
+  console.log(holidays);
   for(var i=0;i < holidays.length;i++){
     console.log("looking in" + holidays[i].Location)
     if(holidays[i].Location == locID){
-      holidays.Comments.push({"Name":username, "Text":comment});
+      holidays[i].Comments.push({"Name":username, "Text":comment});
       console.log("adding comment to" + locID);
     }
   }
   fs.writeFileSync("holidays.json", JSON.stringify(holidays));
+  console.log("written file");
+  return;
 }
 
 // Find the content type (MIME type) to respond with.

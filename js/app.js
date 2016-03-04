@@ -8,7 +8,8 @@ var start = function(){
     };
 
     var recieveHolidays = function(result){
-      $scope.holidays = sortBy(result.holidays, "Rating").reverse();
+      console.log(result);
+      $scope.holidays = sortBy(result, "Rating").reverse();
       console.log($scope.holidays);
     };
 

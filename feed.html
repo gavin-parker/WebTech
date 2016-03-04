@@ -37,11 +37,7 @@
           HOLIDAY RECOMMENDER
       </div>
       <div class="nav-bar-tabs">
-          <div class="tabs"><a alink="white" href="/feed.html">Top Destinations</a></div>
-          <div class="tabs"><a alink="white" href="#">Contact Us</a></div>
-          <div class="tabs"><a alink="white" href="#my-story">Your Story</a></div>
-          <div class="tabs"><a alink="white" href="#diaries">Diaries</a></div>
-          <div class="tabs"><a alink="white" href="index.html">About</a></div>
+          <div class="tabs"><a alink="white" href="index.html">Home</a></div>
       </div>
 
   </div>
@@ -56,6 +52,7 @@
     <div class="card-block" >
       <h3 class="card-title">{{hol.Location}}</h3>
       <p class="card-text">
+        Rating: {{hol.Rating}} <br/>
          Weather: {{hol.Weather}} <br/>
          Price: {{hol.Price}} <br/>
          {{hol.Description}}
@@ -63,14 +60,17 @@
     </div>
     <div uib-collapse="!hol.showing" class="details" ng-click="hol.showing = !hol.showing">
 
-      <div class="review" ng-repeat="rev in hol.Reviews">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>Barry Johnson</h4>
+      <div class="comment" ng-repeat="comment in hol.Comments">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>{{comment.Name}}</h4>
           <p>
-
-          {{rev}} bla blah bla, blah blah bla bla bla <br/> blaaaaaaaaaaah blah blah? bla bla blah.<br/>
-          Price:   <span class="price"> {{toPounds(hol.Price)}}</span><br/>
-          Weather: <span class="weather"> {{toSuns(hol.Weather)}}</span><br/>
+          {{comment.Text}}
         </p>
+      </div>
+      <div class="form-inline" ng-hide="hol.Commented">
+        <h4>Write a comment</h4><br/>
+        <textarea type="text" class="form-control"name="comment" roes="3" ng-model="comment.Text" placeholder="your thoughts..." ></textarea><br/>
+        <input type="text" class="form-control"name="name" ng-model="comment.Name" placeholder="Name" /><br/>
+        <button type="submit" class="btn btn-default" ng-click="submitComment(comment, $index)">Submit</button>
       </div>
       </div>
     </div>

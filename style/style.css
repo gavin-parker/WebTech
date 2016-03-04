@@ -330,3 +330,6 @@ font-size:30px;
 .card-title{
   margin: 1%;
 }
+textarea{
+  min-width:100%;
+}

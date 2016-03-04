@@ -8,7 +8,7 @@ var start = function(){
     };
 
     var recieveHolidays = function(result){
-      $scope.holidays = result.holidays;
+      $scope.holidays = sortBy(result.holidays, "Rating").reverse();
       console.log($scope.holidays);
     };
 
@@ -30,6 +30,25 @@ var start = function(){
         out +=  "\u2600";
       }
       return out;
+    };
+    $scope.submitComment = function(comment, index){
+      $scope.holidays[index].Commented = true;
+      $scope.holidays[index].Comments.push(comment);
+      $http({
+        method: 'POST',
+        url: '/comment?text=' + comment.Text + '&name=' + comment.Name + '&locID=' + $scope.holidays[index].Location
+      }).then(function(){
+        console.log("hi");
+      }, function(){
+        console.log("oh dear");
+      }
+    );
+    };
+    var sortBy = function(holidays, key){
+      return holidays.sort(function(a, b) {
+              var x = a[key]; var y = b[key];
+              return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+      });
     };
 
 

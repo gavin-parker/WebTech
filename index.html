@@ -41,7 +41,7 @@
           <div class="tabs"><a alink="white" href="#">Contact Us</a></div>
           <div class="tabs"><a alink="white" href="#my-story" du-smooth-scroll>Your Story</a></div>
           <div class="tabs"><a alink="white" href="#diaries" du-smooth-scroll>Diaries</a></div>
-          <div class="tabs"><a alink="white" href="#myCarousel" du-smooth-scroll>About</a></div>
+          <div class="tabs"><a alink="white" href="#myCarousel" du-smooth-scroll>Home</a></div>
       </div>
 
   </div>
@@ -119,11 +119,12 @@
         </div>
 
         <div id="story-form" class="story-form">
-        <form >
-            <input class="form-components" ng-style="{{style.Name}}" type="text" name="fname" ng-model="story.Name" placeholder="Name"><br><br>
-            <input class="form-components" ng-style="{{style.Dest}}" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination"><br><br>
-            <input class="form-components" ng-style="{{style.Email}}" type="text" name="lname" ng-model="story.Email" placeholder="Email"><br><br>
-            <input class="form-components" ng-style="{{style.Phone}}" type="text" name="lname" ng-model="story.Phone" placeholder="Phone"><br><br>
+        <form name="storyForm" ng-show="{{!storyForm.$submitted}}">
+          {{storyForm.fname.$valid}}
+            <input class="form-components" ng-style="{{style.Name}}" type="text" name="fname" ng-model="story.Name" placeholder="Name" required><br><br>
+            <input class="form-components" ng-style="{{style.Dest}}" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination" required><br><br>
+            <input class="form-components" ng-style="{{style.Email}}" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br><br>
+            <input class="form-components" ng-style="{{style.Phone}}" type="text" name="lname" ng-model="story.Phone" placeholder="Phone" required><br><br>
             <textarea class="form-components" rows="5" cols="20" placeholder="Your Experience"></textarea><br><br>
             <button class="form-components submit"  ng-model="story" ng-click="submit(story)"> {{buttonText}} </button>
         </form>

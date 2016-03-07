@@ -3,6 +3,7 @@ var start = function(){
   angular.module('webApp', ['ui.bootstrap', 'ngAnimate', 'duScroll'])
   .controller('FeedCtrl', function($scope, $http){
     $scope.test = 'hi';
+    $scope.down = "\u25BC";
     $scope.filter = function(query){
       console.log(query);
     };
@@ -17,7 +18,6 @@ var start = function(){
     $scope.showDetails = function(holiday){
       console.log("hi");
     };
-
     $scope.toPounds = function(price){
       var out = "";
       for(var i=0;i<price;i++){

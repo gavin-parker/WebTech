@@ -9,7 +9,7 @@ html, body{
 body{
     /*background-image: url('https://i.imgur.com/d59jgJM.jpg');*/
     background-size: cover;
-    background-color: #E3F2FD;
+    background-color: #ECEFF1;
 }
 h1{
   margin:auto;
@@ -287,12 +287,10 @@ box-shadow: 0px 0px 8px 0px #000000;
   padding: 0;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  cursor: pointer;
 }
 .card img{
   width:100%;
   margin:0px;
-  cursor: pointer;
 
 }
 .details p{
@@ -332,4 +330,11 @@ font-size:30px;
 }
 textarea{
   min-width:100%;
+}
+.expand{
+background-color: #E0F7FA;
+color: #80DEEA;
+text-align: center;
+width:100%;
+cursor: pointer;
 }

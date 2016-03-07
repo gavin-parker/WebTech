@@ -105,6 +105,9 @@ function serve(request, response) {
       handlePOST(request);
       return;
     }
+    if(request.method == "GET"){
+      handleGET(request, response);
+    }
     if (file == '/') return redirect(response, prefix + '/');
     if (! starts(file,prefix)) return fail(response, NotFound);
     file = file.substring(prefix.length);
@@ -137,6 +140,10 @@ function handlePOST(request){
     submitComment(query.text, query.name, query.locID);
     break;
   }
+}
+
+function handleGET(request, response){
+  var data = url.parse(request.url);
 }
 //handles comment submission
 function submitComment(comment, username , locID ){

@@ -48,10 +48,13 @@
   </div>
 
   <div class="feed">
-  <div class="card" ng-repeat="hol in holidays | filter:query.text" ng-click="hol.showing = !hol.showing">
+  <div class="card" ng-repeat="hol in holidays | filter:query.text">
     <img class="card-img-top" src="{{hol.Images[0]}}" />
     <div class="card-block" >
-      <h3 class="card-title">{{hol.Location}}</h3>
+      <h3 class="card-title">
+         {{hol.Location}}
+         <span ng-click="heart($index)" ng-style="getHeartStyle($index)" class="heart">{{hol.Rating}} ♥</span>
+        </h3>
       <p class="card-text">
         Rating: {{hol.Rating}} <br/>
          Weather: {{hol.Weather}} <br/>
@@ -59,7 +62,7 @@
          {{hol.Description}}
        </p>
     </div>
-    <div class="expand">{{down}}</div>
+    <div class="expand"  ng-click="hol.showing = !hol.showing">{{getArrow(hol.showing)}}</div>
     <div uib-collapse="!hol.showing" class="details" ng-click="hol.showing = !hol.showing">
 
       <div class="comment" ng-repeat="comment in hol.Comments">

@@ -120,7 +120,6 @@
 
         <div id="story-form" class="story-form">
         <form name="storyForm" ng-show="{{!storyForm.$submitted}}">
-          {{storyForm.fname.$valid}}
             <input class="form-components" ng-style="{{style.Name}}" type="text" name="fname" ng-model="story.Name" placeholder="Name" required><br><br>
             <input class="form-components" ng-style="{{style.Dest}}" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination" required><br><br>
             <input class="form-components" ng-style="{{style.Email}}" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br><br>

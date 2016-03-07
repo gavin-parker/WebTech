@@ -14,6 +14,32 @@ var start = function(){
       console.log($scope.holidays);
     };
 
+    $scope.getArrow = function(active){
+      if(active){
+        return "\u25B2";
+      }else{
+        return "\u25BC";
+      }
+    };
+
+    $scope.heart = function(index){
+      if($scope.holidays[index].heart){
+        $scope.holidays[index].heart = false;
+        $scope.holidays[index].Rating --;
+
+      }else{
+        $scope.holidays[index].heart = true;
+        $scope.holidays[index].Rating ++;
+      }
+    };
+
+    $scope.getHeartStyle = function(index){
+      if($scope.holidays[index].heart){
+        return {color : '#F48FB1'};
+      }else{
+        return {color : '#E0E0E0'};
+      }
+    };
     $http.get('holidays.json').success(recieveHolidays);
     $scope.showDetails = function(holiday){
       console.log("hi");

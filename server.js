@@ -14,12 +14,14 @@ var sql = require("sqlite3");
 sql.verbose();
 var db = new sql.Database("test.db");
 db.serialize(startup);
-var insertHol = db.prepare("insert into hols values (?, ?, ?, ?)");
+var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?)");
+var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
 
 
 
 function startup(){
-  db.run("create table hols (name text, destination text, email text, description text )", err);
+  db.run("create table hols (id integer primary key, name text, destination text, email text, description text, image text)", err);
+  db.run("create table comments (id integer primary key, name text, contents text,hol text, foreign key (hol) references hols(id))");
 }
 
 function err(e){
@@ -172,7 +174,7 @@ function submitHoliday(story){
   console.log(story.email);
   console.log(story.number);
   console.log(story.desc);
-  insertHol.run(story.name, story.dest, story.email, story.desc);
+  insertHol.run(null,story.name, story.dest, story.email, story.desc, 'image');
   insertHol.finalize();
 }
 //handles comment submission
@@ -188,6 +190,7 @@ function submitComment(comment, username , locID ){
   }
   fs.writeFileSync("holidays.json", JSON.stringify(holidays));
   console.log("written file");
+  insertComment.run(null, username, comment, locID);
   return;
 }
 

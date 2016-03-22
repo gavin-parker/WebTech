@@ -21,7 +21,7 @@ var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
 
 function startup(){
   db.run("create table hols (id integer primary key, name text, destination text, email text, description text, image text)", err);
-  db.run("create table comments (id integer primary key, name text, contents text,hol text, foreign key (hol) references hols(id))");
+  db.run("create table comments (id integer primary key, name text, contents text,hol text, foreign key (hol) references hols(id))",err);
 }
 
 function err(e){
@@ -168,15 +168,44 @@ function handleGET(request, response){
   var data = url.parse(request.url);
 }
 
+
+function getImageRef(location){
+  //AIzaSyBOeMfLJJufB9KfGD4L30nh3mShG9l52kc
+  var APIkey = "AIzaSyBOeMfLJJufB9KfGD4L30nh3mShG9l52kc";
+  var search = {
+    host: "maps.googleapis.com",
+    path: "/maps/api/place/textsearch/json?query=" + location + "&key=" + APIkey
+  };
+  var res = "";
+  callback = function(response){
+    response.on('end', function(){
+      console.log(res);
+      console.log(res.results[0].photos[0]);
+      return res;
+    });
+    response.on('data', function(dat){
+      console.log(dat);
+      res += dat;
+    });
+  };
+
+  return https.get(search, callback).end();
+}
+
+
+
+//writes a holiday to the database
 function submitHoliday(story){
   console.log(story.name);
   console.log(story.dest);
   console.log(story.email);
   console.log(story.number);
   console.log(story.desc);
+  var image = getImageRef(story.dest);
   insertHol.run(null,story.name, story.dest, story.email, story.desc, 'image');
   insertHol.finalize();
 }
+
 //handles comment submission
 function submitComment(comment, username , locID ){
   var holidays = JSON.parse([fs.readFileSync("holidays.json", "ascii")]);

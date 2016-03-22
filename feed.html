@@ -45,6 +45,7 @@
 
   <div class = "sidebar">
     <input class="form-control" type="search" ng-model="query.text" placeholder="Search"/>
+    <a href="submit.html"><button class="btn btn-default" >Submit A Holiday</button></a>
   </div>
 
   <div class="feed">
@@ -63,7 +64,7 @@
        </p>
     </div>
     <div class="expand"  ng-click="hol.showing = !hol.showing">{{getArrow(hol.showing)}}</div>
-    <div uib-collapse="!hol.showing" class="details" ng-click="hol.showing = !hol.showing">
+    <div uib-collapse="!hol.showing" class="details">
 
       <div class="comment" ng-repeat="comment in hol.Comments">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>{{comment.Name}}</h4>

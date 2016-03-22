@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" >
+<!--[if IE]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<![endif]-->
+<head>
+
+
+  <meta charset="UTF-8" />
+  <script src="js/frameworks/angular.min.js"></script>
+  <script src="js/frameworks/angular-animate.min.js"></script>
+  <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/frameworks/angular-scroll.js"></script>
+
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'>
+  <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
+  <link rel="stylesheet" href="style/style.css" type="text/css" />
+
+
+
+  <title>Holiday Recommender</title>
+
+</head>
+<body ng-app="webApp">
+  <div class="nav-bar">
+      <div class="nav-bar-head">
+          HOLIDAY RECOMMENDER
+      </div>
+      <div class="nav-bar-tabs">
+          <div class="tabs"><a alink="white" href="index.html">Home</a></div>
+      </div>
+  </div>
+
+  <div id="my-story" class="my-story" ng-controller="FormCtrl">
+      <div id="my-story-title" class="my-story-title">
+          SHARE <br> YOUR STORY
+      </div>
+
+      <div id="story-form" class="story-form">
+      <form name="storyForm" ng-show="{{!storyForm.$submitted}}">
+          <input class="form-components" type="text" name="fname" ng-model="story.Name" placeholder="Name" required><br><br>
+          <input class="form-components" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination" required><br><br>
+          <input class="form-components" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br><br>
+          <input class="form-components" type="number" ng-minlength="10" name="lname" ng-model="story.Phone" placeholder="Phone" required><br><br>
+          <textarea class="form-components" rows="5" cols="20" placeholder="Your Experience" ng-model="story.Description"></textarea><br><br>
+          <button class="form-components submit"  ng-model="story" ng-click="submit(story)"> {{buttonText}} </button>
+      </form>
+      </div>
+
+
+  </div>
+
+</body>
+</html>

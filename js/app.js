@@ -82,7 +82,7 @@ var start = function(){
 
 
   })
-  .controller('FormCtrl', function($scope){
+  .controller('FormCtrl', function($scope, $http){
     $scope.story = {};
     $scope.buttonText = "Share";
     var shared = false;
@@ -91,33 +91,18 @@ var start = function(){
         return;
       }
       $scope.story = angular.copy(story);
-      console.log($scope.story);
-       if (validate($scope.story)){
          $scope.buttonText = "Done!";
          shared = true;
-       }
+         $http({
+           method: 'POST',
+           url: '/post?name=' + story.Name + '&dest=' + story.Destination + '&email=' + story.Email + '&number=' + story.Phones + '&desc=' + story.Description
+         }).then(function(){
+           console.log("hi");
+         }, function(){
+           console.log("oh dear");
+         }
+        );
     };
-
-
-
-    var validate = function(story){
-      if(story.Name.length > 20){
-        console.log("error in name");
-        return false;
-      }
-      if(story.Destination.length > 20){
-        console.log("error in destination");
-        return false;
-      }
-      if(story.Email.indexOf('@') == -1){
-        console.log("error in email");
-        return false;
-      }
-      return true;
-    };
-  })
-  .controller('MainCtrl', function($scope){
-
   });
 };
 start();

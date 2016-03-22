@@ -10,7 +10,23 @@ var fs = require('fs');
 var path = require('path');
 var url = require( "url" );
 var queryString = require( "querystring" );
+var sql = require("sqlite3");
+sql.verbose();
+var db = new sql.Database("test.db");
+db.serialize(startup);
+var insertHol = db.prepare("insert into hols values (?, ?, ?, ?)");
 
+
+
+function startup(){
+  db.run("create table hols (name text, destination text, email text, description text )", err);
+}
+
+function err(e){
+  if(e){
+  console.log(e);
+}
+}
 // The default port numbers are the standard ones [80,443] for convenience.
 // Change them to e.g. [8080,8443] to avoid privilege or clash problems.
 var ports = [80, 443];
@@ -139,11 +155,25 @@ function handlePOST(request){
     console.log("comment request");
     submitComment(query.text, query.name, query.locID);
     break;
+    case "/post":
+    console.log("post request");
+    submitHoliday(query);
+    break;
   }
 }
 
 function handleGET(request, response){
   var data = url.parse(request.url);
+}
+
+function submitHoliday(story){
+  console.log(story.name);
+  console.log(story.dest);
+  console.log(story.email);
+  console.log(story.number);
+  console.log(story.desc);
+  insertHol.run(story.name, story.dest, story.email, story.desc);
+  insertHol.finalize();
 }
 //handles comment submission
 function submitComment(comment, username , locID ){

@@ -12,6 +12,8 @@ var url = require( "url" );
 var imgapi = require("gettyimages-api");
 var queryString = require( "querystring" );
 var sql = require("sqlite3");
+var events = require("events");
+var eventEmitter = new events.EventEmitter();
 sql.verbose();
 var exists = fs.existsSync("test.db");
 var db = new sql.Database("test.db");
@@ -19,12 +21,10 @@ db.serialize(startup);
 var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?)");
 var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
 var updateImage = db.prepare("update hols set image = ? where destination = ?");
-var creds = { apiKey: "bbsn423re7z88nmxbzt7cy3y", apiSecret: "TjR96NAx2WwRS96JuEW3KDwF98avTQrCshRV9VGw3d7f5", username: "gavin_parker3", password: "Webtech0794" };
-var client = new imgapi (creds);
 function startup(){
   if(!exists){
   db.run("create table hols (id integer primary key, name text, destination text, email text, description text, image text, rating int, weather text)", err);
-  db.run("create table comments (id integer primary key, name text, contents text,hol text, foreign key (hol) references hols(id))",err);
+  db.run("create table comments (id integer primary key, name text, contents text,hol integer)",err);
 }
 }
 
@@ -73,7 +73,7 @@ function start() {
     var httpsService = https.createServer(options, serve);
     httpsService.listen(ports[1], 'localhost');
     printAddresses();
-    var image2 = getImageRef("london");
+    getImage("London");
 }
 
 // Print out the server addresses.
@@ -176,7 +176,7 @@ function handleGET(request, response){
   var query = queryString.parse(data.query);
   console.log(query);
   if(query.query == "holidays"){
-    holidays = getHolidays(query,request,response);
+    getHolidays(query,request,response);
     return true;
   }
   return false;
@@ -184,22 +184,42 @@ function handleGET(request, response){
 
 function getHolidays(query,request,response)
 {
-  db.all("select * from hols", function(err,rows){ show(err,rows,request,response); });
+  var hols = [];
+  var completed = 0;
+  var holnum = 0;
+  var emitter = new events.EventEmitter();
+  emitter.on('comments', function(){
+    completed++;
+    console.log("completed:" + completed + " holnum:" + holnum);
+    if(completed == holnum){
+      console.log("complete");
+      console.log(hols);
+      response.write(JSON.stringify(hols));
+      response.end();
+    }
+  });
+
+  db.each("select * from hols", function(err,row){
+    console.log("getting comments for" + row.id);
+    //hols.push(row);
+    db.all("select * from comments where hol = ?",row.id, function(err,rows){
+      row.comments = [];
+      console.log(rows);
+      row.comments = rows;
+      hols.push(row);
+      emitter.emit('comments');
+    });
+  }, function(err,rows){
+    holnum = rows;
+    console.log("hols: " + holnum);
+  });
 }
 
-function show(err, rows,request,response){
-  if(err){
-    throw err;
-  }
-  console.log(rows);
-  response.write(JSON.stringify(rows));
-  response.end();
-}
 
-function getImageRef(location){
+function getImage(location){
   https.get({
     host : 'pixabay.com',
-    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + location + '&image_type=photo&orientation=horizontal'
+    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + location + '&image_type=photo&orientation=horizontal&category=places'
   }, function(response){
       var body = '';
       response.on('data', function(d) {
@@ -208,6 +228,7 @@ function getImageRef(location){
       response.on('end', function() {
             // Data reception is done, do whatever with it!
             var data = JSON.parse(body);
+            console.log(body);
             //console.log(data);
             var imageURL = data.hits[0].webformatURL;
             console.log(imageURL);
@@ -225,23 +246,12 @@ function submitHoliday(story){
   console.log(story.number);
   console.log(story.desc);
   var image = "image";
-  var image2 = getImageRef(story.dest);
   insertHol.run(null,story.name, story.dest, story.email, story.desc, 'image',0,"sunny");
+  getImage(story.dest);
 }
 
 //handles comment submission
 function submitComment(comment, username , locID ){
-  var holidays = JSON.parse([fs.readFileSync("holidays.json", "ascii")]);
-  console.log(holidays);
-  for(var i=0;i < holidays.length;i++){
-    console.log("looking in" + holidays[i].Location)
-    if(holidays[i].Location == locID){
-      holidays[i].Comments.push({"Name":username, "Text":comment});
-      console.log("adding comment to" + locID);
-    }
-  }
-  fs.writeFileSync("holidays.json", JSON.stringify(holidays));
-  console.log("written file");
   insertComment.run(null, username, comment, locID);
   return;
 }

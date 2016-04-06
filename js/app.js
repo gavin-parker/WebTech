@@ -10,7 +10,7 @@ var start = function(){
 
     var recieveHolidays = function(result){
       console.log(result);
-      $scope.holidays = sortBy(result, "Rating").reverse();
+      $scope.holidays = sortBy(result, "rating").reverse();
       console.log($scope.holidays);
     };
 
@@ -60,10 +60,10 @@ var start = function(){
     };
     $scope.submitComment = function(comment, index){
       $scope.holidays[index].Commented = true;
-      $scope.holidays[index].Comments.push(comment);
+      $scope.holidays[index].comments.push(comment);
       $http({
         method: 'POST',
-        url: '/comment?text=' + comment.Text + '&name=' + comment.Name + '&locID=' + $scope.holidays[index].Location
+        url: '/comment?text=' + comment.Text + '&name=' + comment.Name + '&locID=' + $scope.holidays[index].id
       }).then(function(){
         console.log("hi");
       }, function(){

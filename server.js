@@ -9,19 +9,23 @@ var https = require('https');
 var fs = require('fs');
 var path = require('path');
 var url = require( "url" );
+var imgapi = require("gettyimages-api");
 var queryString = require( "querystring" );
 var sql = require("sqlite3");
 sql.verbose();
+var exists = fs.existsSync("test.db");
 var db = new sql.Database("test.db");
 db.serialize(startup);
-var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?)");
+var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?)");
 var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
-
-
-
+var updateImage = db.prepare("update hols set image = ? where destination = ?");
+var creds = { apiKey: "bbsn423re7z88nmxbzt7cy3y", apiSecret: "TjR96NAx2WwRS96JuEW3KDwF98avTQrCshRV9VGw3d7f5", username: "gavin_parker3", password: "Webtech0794" };
+var client = new imgapi (creds);
 function startup(){
-  db.run("create table hols (id integer primary key, name text, destination text, email text, description text, image text)", err);
+  if(!exists){
+  db.run("create table hols (id integer primary key, name text, destination text, email text, description text, image text, rating int, weather text)", err);
   db.run("create table comments (id integer primary key, name text, contents text,hol text, foreign key (hol) references hols(id))",err);
+}
 }
 
 function err(e){
@@ -69,6 +73,7 @@ function start() {
     var httpsService = https.createServer(options, serve);
     httpsService.listen(ports[1], 'localhost');
     printAddresses();
+    var image2 = getImageRef("london");
 }
 
 // Print out the server addresses.
@@ -124,7 +129,9 @@ function serve(request, response) {
       return;
     }
     if(request.method == "GET"){
-      handleGET(request, response);
+      if(handleGET(request, response)){
+        return;
+      }
     }
     if (file == '/') return redirect(response, prefix + '/');
     if (! starts(file,prefix)) return fail(response, NotFound);
@@ -166,32 +173,48 @@ function handlePOST(request){
 
 function handleGET(request, response){
   var data = url.parse(request.url);
+  var query = queryString.parse(data.query);
+  console.log(query);
+  if(query.query == "holidays"){
+    holidays = getHolidays(query,request,response);
+    return true;
+  }
+  return false;
 }
 
+function getHolidays(query,request,response)
+{
+  db.all("select * from hols", function(err,rows){ show(err,rows,request,response); });
+}
+
+function show(err, rows,request,response){
+  if(err){
+    throw err;
+  }
+  console.log(rows);
+  response.write(JSON.stringify(rows));
+  response.end();
+}
 
 function getImageRef(location){
-  //AIzaSyBOeMfLJJufB9KfGD4L30nh3mShG9l52kc
-  var APIkey = "AIzaSyBOeMfLJJufB9KfGD4L30nh3mShG9l52kc";
-  var search = {
-    host: "maps.googleapis.com",
-    path: "/maps/api/place/textsearch/json?query=" + location + "&key=" + APIkey
-  };
-  var res = "";
-  callback = function(response){
-    response.on('end', function(){
-      console.log(res);
-      console.log(res.results[0].photos[0]);
-      return res;
-    });
-    response.on('data', function(dat){
-      console.log(dat);
-      res += dat;
-    });
-  };
-
-  return https.get(search, callback).end();
+  https.get({
+    host : 'pixabay.com',
+    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + location + '&image_type=photo&orientation=horizontal'
+  }, function(response){
+      var body = '';
+      response.on('data', function(d) {
+          body += d;
+      });
+      response.on('end', function() {
+            // Data reception is done, do whatever with it!
+            var data = JSON.parse(body);
+            //console.log(data);
+            var imageURL = data.hits[0].webformatURL;
+            console.log(imageURL);
+            updateImage.run(imageURL,location);
+        });
+      });
 }
-
 
 
 //writes a holiday to the database
@@ -201,9 +224,9 @@ function submitHoliday(story){
   console.log(story.email);
   console.log(story.number);
   console.log(story.desc);
-  var image = getImageRef(story.dest);
-  insertHol.run(null,story.name, story.dest, story.email, story.desc, 'image');
-  insertHol.finalize();
+  var image = "image";
+  var image2 = getImageRef(story.dest);
+  insertHol.run(null,story.name, story.dest, story.email, story.desc, 'image',0,"sunny");
 }
 
 //handles comment submission
@@ -323,6 +346,21 @@ var cert =
     "dgxV4FeBF6hW2pnchveJK4Kh56ShKF8SK1P8wiqHqV04O9p1OrkB6GxlIO37eq1U\n" +
     "xQMaMCUsZCWPP3ujKAVL7m3HY2FQ7EJBVoqvSvqSaHfnhog3WpgdyMw=\n" +
     "-----END CERTIFICATE-----\n";
+
+
+function close(){
+  db.close();
+  console.log("closing nicely");
+  process.exit(2);
+}
+process.on('SIGINT', close);
+
+function done(){
+  insertHol.finalize();
+  insertComment.finalize();
+  db.close();
+  process.exit();
+}
 
 // Start everything going.
 start();

@@ -124,7 +124,7 @@
             <input class="form-components" ng-style="{{style.Dest}}" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination" required><br><br>
             <input class="form-components" ng-style="{{style.Email}}" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br><br>
             <input class="form-components" ng-style="{{style.Phone}}" ng-minlength="10" type="number" name="lname" ng-model="story.Phone" placeholder="Phone" required><br><br>
-            <textarea class="form-components" rows="5" cols="20" placeholder="Your Experience"></textarea><br><br>
+            <textarea class="form-components" rows="5" cols="20" placeholder="Your Experience" ng-model="story.Description"></textarea><br><br>
             <button class="form-components submit"  ng-model="story" ng-click="submit(story)"> {{buttonText}} </button>
         </form>
         </div>

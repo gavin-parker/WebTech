@@ -40,7 +40,7 @@ var start = function(){
         return {color : '#E0E0E0'};
       }
     };
-    $http.get('holidays.json').success(recieveHolidays);
+    $http.get('?query=holidays').success(recieveHolidays);
     $scope.showDetails = function(holiday){
       console.log("hi");
     };

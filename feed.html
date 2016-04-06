@@ -66,15 +66,15 @@
     <div uib-collapse="!hol.showing" class="details">
 
       <div class="comment" ng-repeat="comment in hol.comments">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>{{comment.Name}}</h4>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>{{comment.name}}</h4>
           <p>
-          {{comment.Text}}
+          {{comment.contents}}
         </p>
       </div>
       <div class="form-inline" ng-hide="hol.Commented">
         <h4>Write a comment</h4><br/>
-        <textarea type="text" class="form-control"name="comment" roes="3" ng-model="comment.Text" placeholder="your thoughts..." ></textarea><br/>
-        <input type="text" class="form-control"name="name" ng-model="comment.Name" placeholder="Name" /><br/>
+        <textarea type="text" class="form-control"name="comment" roes="3" ng-model="comment.contents" placeholder="your thoughts..." ></textarea><br/>
+        <input type="text" class="form-control"name="name" ng-model="comment.name" placeholder="Name" /><br/>
         <button type="submit" class="btn btn-default" ng-click="submitComment(comment, $index)">Submit</button>
       </div>
       </div>

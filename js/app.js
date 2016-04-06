@@ -63,7 +63,7 @@ var start = function(){
       $scope.holidays[index].comments.push(comment);
       $http({
         method: 'POST',
-        url: '/comment?text=' + comment.Text + '&name=' + comment.Name + '&locID=' + $scope.holidays[index].id
+        url: '/comment?text=' + comment.contents + '&name=' + comment.name + '&locID=' + $scope.holidays[index].id
       }).then(function(){
         console.log("hi");
       }, function(){

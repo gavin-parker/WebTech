@@ -181,7 +181,7 @@ function handleGET(request, response){
   }
   return false;
 }
-
+//get each holiday and attatch comments before writing out response
 function getHolidays(query,request,response)
 {
   var hols = [];

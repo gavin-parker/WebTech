@@ -25,11 +25,26 @@ var start = function(){
     $scope.heart = function(index){
       if($scope.holidays[index].heart){
         $scope.holidays[index].heart = false;
-        $scope.holidays[index].Rating --;
-
+        $scope.holidays[index].rating --;
+        $http({
+          method: 'POST',
+          url: '/rating?holid='+ $scope.holidays[index].id + '&up=false'
+        }).then(function(){
+          console.log("submitted rating");
+        }, function(){
+          console.log("Failed to send rating to server");
+        });
       }else{
         $scope.holidays[index].heart = true;
-        $scope.holidays[index].Rating ++;
+        $scope.holidays[index].rating ++;
+        $http({
+          method: 'POST',
+          url: '/rating?holid='+ $scope.holidays[index].id + '&up=true'
+        }).then(function(){
+          console.log("submitted rating");
+        }, function(){
+          console.log("Failed to send rating to server");
+        });
       }
     };
 
@@ -65,9 +80,9 @@ var start = function(){
         method: 'POST',
         url: '/comment?text=' + comment.contents + '&name=' + comment.name + '&locID=' + $scope.holidays[index].id
       }).then(function(){
-        console.log("hi");
+        console.log("submitted comment");
       }, function(){
-        console.log("oh dear");
+        console.log("failed to submit comment");
       }
     );
     };

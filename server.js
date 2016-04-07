@@ -21,6 +21,7 @@ db.serialize(startup);
 var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?)");
 var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
 var updateImage = db.prepare("update hols set image = ? where destination = ?");
+var addRating = db.prepare("update hols set rating = rating + ? where id= ?");
 function startup(){
   if(!exists){
   db.run("create table hols (id integer primary key, name text, destination text, email text, description text, image text, rating int, weather text)", err);
@@ -126,6 +127,7 @@ function serve(request, response) {
     var file = request.url;
     if(request.method == "POST"){
       handlePOST(request);
+      response.end();
       return;
     }
     if(request.method == "GET"){
@@ -168,13 +170,21 @@ function handlePOST(request){
     console.log("post request");
     submitHoliday(query);
     break;
+    case "/rating":
+    console.log("increment rating of" +  query.holid);
+    if(query.up){
+    addRating.run(1,query.holid);
+  }else{
+    addRating.run(-1,query.holid);
+  }
+    break;
   }
 }
 
 function handleGET(request, response){
   var data = url.parse(request.url);
   var query = queryString.parse(data.query);
-  console.log(query);
+  //console.log(query);
   if(query.query == "holidays"){
     getHolidays(query,request,response);
     return true;
@@ -190,28 +200,28 @@ function getHolidays(query,request,response)
   var emitter = new events.EventEmitter();
   emitter.on('comments', function(){
     completed++;
-    console.log("completed:" + completed + " holnum:" + holnum);
+    //console.log("completed:" + completed + " holnum:" + holnum);
     if(completed == holnum){
-      console.log("complete");
-      console.log(hols);
+      //console.log("complete");
+      //console.log(hols);
       response.write(JSON.stringify(hols));
       response.end();
     }
   });
 
   db.each("select * from hols", function(err,row){
-    console.log("getting comments for" + row.id);
+    //console.log("getting comments for" + row.id);
     //hols.push(row);
     db.all("select * from comments where hol = ?",row.id, function(err,rows){
       row.comments = [];
-      console.log(rows);
+      //console.log(rows);
       row.comments = rows;
       hols.push(row);
       emitter.emit('comments');
     });
   }, function(err,rows){
     holnum = rows;
-    console.log("hols: " + holnum);
+    //console.log("hols: " + holnum);
   });
 }
 
@@ -219,7 +229,7 @@ function getHolidays(query,request,response)
 function getImage(location){
   https.get({
     host : 'pixabay.com',
-    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + location + '&image_type=photo&orientation=horizontal&category=places'
+    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + location + '&image_type=photo&orientation=horizontal&category=travel'
   }, function(response){
       var body = '';
       response.on('data', function(d) {
@@ -255,6 +265,7 @@ function submitComment(comment, username , locID ){
   insertComment.run(null, username, comment, locID);
   return;
 }
+
 
 // Find the content type (MIME type) to respond with.
 // Content negotiation is used for XHTML delivery to new/old browsers.

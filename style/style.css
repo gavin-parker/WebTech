@@ -153,9 +153,6 @@ a:hover {
     font-family: 'Montserrat';
     font-size: 50pt;
     color: white;
-
-
-
 }
 .my-story-title {
   padding-left: 4%;
@@ -167,18 +164,25 @@ a:hover {
 }
 .story-form {
     font-size: 17pt;
-    padding-top: 6%;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 5%;
+    margin-right: 5%;
     text-align: center;
     float: right;
-    width: 50%;
-    height: 100%;
-}
-.form-components {
-    border: 5px;
-    border-style: solid;
-    border-color: white;
+    width: 33%;
+    height: 66%;
     color: black;
-    background: white;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    z-index: 2;
+    line-height: 100%; 
+}
+#country{
+  width:100%;
+  margin: auto;
 }
 .submit {
     border-left: 50px;
@@ -192,6 +196,7 @@ a:hover {
     border-color: forestgreen;
     color: white;
 }
+
 .slide span{
   top: 100px;
   left:100px;

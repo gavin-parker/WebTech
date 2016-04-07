@@ -100,17 +100,19 @@ var start = function(){
   .controller('FormCtrl', function($scope, $http){
     $scope.story = {};
     $scope.buttonText = "Share";
+    $("#country").countrySelect();
     var shared = false;
     $scope.submit = function(story){
       if(shared){
         return;
       }
       $scope.story = angular.copy(story);
+      console.log(story);
          $scope.buttonText = "Done!";
          shared = true;
          $http({
            method: 'POST',
-           url: '/post?name=' + story.Name + '&dest=' + story.Destination + '&email=' + story.Email + '&number=' + story.Phones + '&desc=' + story.Description
+           url: '/post?name=' + story.Name + '&dest=' + story.Destination + '&Country=' + story.Country + '&email=' + story.Email + '&desc=' + story.Description + "&weather=" + story.Weather + "&price=" + story.Price
          }).then(function(){
            console.log("hi");
          }, function(){

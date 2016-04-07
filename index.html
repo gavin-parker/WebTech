@@ -12,6 +12,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/frameworks/angular-scroll.js"></script>
+  <script src="js/frameworks/countrySelect.min.js"></script>
+
 
   <script async src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -21,6 +23,7 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
   <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="style/countrySelect.min.css" type="text/css" />
   <link rel="stylesheet" href="style/style.css" type="text/css" />
 
 
@@ -59,7 +62,7 @@
     <div class="carousel-inner" role="listbox">
       <div class="item active" id="item1">
 
-        ENJOY SUNSET <br>AT BALI
+        ENJOY SUNSET <br>IN BALI
       </div>
 
       <div class="item" id="item2">
@@ -117,17 +120,34 @@
         <div id="my-story-title" class="my-story-title">
             SHARE <br> YOUR STORY
         </div>
-
         <div id="story-form" class="story-form">
-        <form name="storyForm" ng-show="{{!storyForm.$submitted}}">
-            <input class="form-components" ng-style="{{style.Name}}" type="text" name="fname" ng-model="story.Name" placeholder="Name" required><br><br>
-            <input class="form-components" ng-style="{{style.Dest}}" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination" required><br><br>
-            <input class="form-components" ng-style="{{style.Email}}" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br><br>
-            <input class="form-components" ng-style="{{style.Phone}}" ng-minlength="10" type="number" name="lname" ng-model="story.Phone" placeholder="Phone" required><br><br>
-            <textarea class="form-components" rows="5" cols="20" placeholder="Your Experience" ng-model="story.Description"></textarea><br><br>
-            <button class="form-components submit"  ng-model="story" ng-click="submit(story)"> {{buttonText}} </button>
+          <div class="form-horizontal">
+        <form name="storyForm" ng-show="{{!storyForm.$submitted}}" >
+            <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required><br />
+            <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br />
+            <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination" required><br />
+            <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required><br /><br />
+            <select class="form-control" ng-model="story.Price">
+              <option value="">Please select a price</option>
+                <option value="1">Bargain</option>
+                <option value="2">Cheap</option>
+                <option value="3">Reasonable</option>
+                <option value="4">Expensive</option>
+                <option value="5">Extortionate</option>
+            </select><br />
+            <select class="form-control" ng-model="story.Weather">
+              <option value="">What was the weather like?</option>
+                <option value="1">Very Cold</option>
+                <option value="2">Cold</option>
+                <option value="3">Temperate</option>
+                <option value="4">Hot</option>
+                <option value="5">Very Hot</option>
+            </select><br />
+            <textarea class="form-control" rows="5" cols="20" placeholder="Your Experience" ng-model="story.Description"></textarea><br />
+            <button class="btn btn-default"  ng-model="story" ng-click="submit(story)"> {{buttonText}} </button>
         </form>
         </div>
+      </div>
 
 
     </div>

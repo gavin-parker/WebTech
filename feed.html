@@ -42,10 +42,11 @@
       </div>
 
   </div>
-
+  <a href="submit.html" class="postButton"><button class="btn btn-default" >Submit A Holiday</button></a>
   <div class = "sidebar">
-    <input class="form-control" type="search" ng-model="query.text" placeholder="Search"/>
-    <a href="submit.html"><button class="btn btn-default" >Submit A Holiday</button></a>
+    <div class = "form-horizontal">
+      <input class="form-control" type="search" ng-model="query.text" placeholder="Filter"/>
+    </div>
   </div>
 
   <div class="feed">
@@ -53,7 +54,7 @@
     <img class="card-img-top" src="{{hol.image}}" />
     <div class="card-block" >
       <h3 class="card-title">
-         {{hol.destination}}
+         {{hol.destination}},{{hol.country}}
          <span ng-click="heart($index)" ng-style="getHeartStyle($index)" class="heart">{{hol.rating}} ♥</span>
         </h3>
       <p class="card-text">

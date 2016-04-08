@@ -178,7 +178,7 @@ a:hover {
     border-radius: 3px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     z-index: 2;
-    line-height: 100%; 
+    line-height: 100%;
 }
 #country{
   width:100%;
@@ -195,6 +195,14 @@ a:hover {
     background: forestgreen;
     border-color: forestgreen;
     color: white;
+}
+.postButton {
+  position: fixed;
+  float:right;
+  margin:auto;
+  left:90%;
+  bottom: 5%;
+  z-index: 1;
 }
 
 .slide span{
@@ -283,6 +291,7 @@ box-shadow: 0px 0px 8px 0px #000000;
   background-color: white;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding:5px;
 }
 .card{
   margin:auto;
@@ -296,7 +305,8 @@ box-shadow: 0px 0px 8px 0px #000000;
 .card img{
   width:100%;
   margin:0px;
-
+  max-height: 600px;
+  object-fit: cover;
 }
 .details p{
   margin-left: 42px;

@@ -110,9 +110,10 @@ var start = function(){
       console.log(story);
          $scope.buttonText = "Done!";
          shared = true;
+         story.Country = $("#country").countrySelect("getSelectedCountryData").name;
          $http({
            method: 'POST',
-           url: '/post?name=' + story.Name + '&dest=' + story.Destination + '&Country=' + story.Country + '&email=' + story.Email + '&desc=' + story.Description + "&weather=" + story.Weather + "&price=" + story.Price
+           url: '/post?name=' + story.Name + '&dest=' + story.Destination + '&country=' + story.Country + '&email=' + story.Email + '&desc=' + story.Description + "&weather=" + story.Weather + "&price=" + story.Price
          }).then(function(){
            console.log("hi");
          }, function(){

@@ -18,13 +18,13 @@ sql.verbose();
 var exists = fs.existsSync("test.db");
 var db = new sql.Database("test.db");
 db.serialize(startup);
-var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?)");
+var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?,?,?)");
 var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
 var updateImage = db.prepare("update hols set image = ? where destination = ?");
 var addRating = db.prepare("update hols set rating = rating + ? where id= ?");
 function startup(){
   if(!exists){
-  db.run("create table hols (id integer primary key, name text, destination text, email text, description text, image text, rating int, weather text)", err);
+  db.run("create table hols (id integer primary key, name text, destination text, country text, email text, description text, image text, rating int, weather text, price text)", err);
   db.run("create table comments (id integer primary key, name text, contents text,hol integer)",err);
 }
 }
@@ -74,7 +74,6 @@ function start() {
     var httpsService = https.createServer(options, serve);
     httpsService.listen(ports[1], 'localhost');
     printAddresses();
-    getImage("London");
 }
 
 // Print out the server addresses.
@@ -226,7 +225,7 @@ function getHolidays(query,request,response)
 }
 
 
-function getImage(location){
+function getImage(location,country){
   https.get({
     host : 'pixabay.com',
     path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + location + '&image_type=photo&orientation=horizontal&category=travel'
@@ -240,13 +239,38 @@ function getImage(location){
             var data = JSON.parse(body);
             console.log(body);
             //console.log(data);
+            if(data.hits[0] !== null){
             var imageURL = data.hits[0].webformatURL;
             console.log(imageURL);
             updateImage.run(imageURL,location);
+          }else{
+            getBackupImage(location,country);
+          }
         });
       });
 }
-
+function getBackupImage(location,country){
+  https.get({
+    host : 'pixabay.com',
+    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + country + '&image_type=photo&orientation=horizontal&category=travel'
+  }, function(response){
+      var body = '';
+      response.on('data', function(d) {
+          body += d;
+      });
+      response.on('end', function() {
+            // Data reception is done, do whatever with it!
+            var data = JSON.parse(body);
+            console.log(body);
+            //console.log(data);
+            if(data.hits[0] !== null){
+            var imageURL = data.hits[0].webformatURL;
+            console.log(imageURL);
+            updateImage.run(imageURL,location);
+          }
+        });
+      });
+}
 
 //writes a holiday to the database
 function submitHoliday(story){
@@ -255,8 +279,9 @@ function submitHoliday(story){
   console.log(story.email);
   console.log(story.number);
   console.log(story.desc);
+  console.log(story.country);
   var image = "image";
-  insertHol.run(null,story.name, story.dest, story.email, story.desc, 'image',0,"sunny");
+  insertHol.run(null,story.name, story.dest,story.country, story.email, story.desc, 'image',0,story.weather,story.price);
   getImage(story.dest);
 }
 

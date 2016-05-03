@@ -80,7 +80,7 @@
             <span ng-click="heart($index)" ng-style="getHeartStyle($index)" class="heart">{{hol.rating}} ♥</span>
           </h3>
           <p class="card-text">
-            Weather: <object class="small-icon"data="img/weather1.svg" type="image/svg+xml"></object> <br/>
+            Weather: <object class="small-icon"data="img/weather{{hol.weather}}.svg" type="image/svg+xml"></object> <br/>
             Price: <object ng-repeat="i in getNumber(hol.price) track by $index" class="small-icon"data="img/dollardollarbillsyall.svg" type="image/svg+xml"></object><br/>
             {{hol.description}}
           </p>

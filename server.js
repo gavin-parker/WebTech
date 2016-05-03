@@ -223,7 +223,14 @@ function getHolidays(query,request,response)
     //console.log("hols: " + holnum);
   });
 }
-
+function saveImage(imageURL, location){
+  var filename = "./img/" + location + ".jpg";
+  var file = fs.createWriteStream(filename);
+  var request = https.get(imageURL,function(response){
+    response.pipe(file);
+    updateImage.run(filename,location);
+  });
+}
 
 function getImage(location,country){
   https.get({
@@ -241,8 +248,10 @@ function getImage(location,country){
             //console.log(data);
             if(data.hits[0] !== null){
             var imageURL = data.hits[0].webformatURL;
+
             console.log(imageURL);
             updateImage.run(imageURL,location);
+            saveImage(imageURL,location);
           }else{
             getBackupImage(location,country);
           }
@@ -280,9 +289,16 @@ function submitHoliday(story){
   console.log(story.number);
   console.log(story.desc);
   console.log(story.country);
+
+  if(story.name === "" || story.dest === "" || story.email === "" || story.desc === ""){
+    return;
+  }
+  try{
   var image = "image";
   insertHol.run(null,story.name, story.dest,story.country, story.email, story.desc, 'image',0,story.weather,story.price);
   getImage(story.dest);
+}catch(err){
+}
 }
 
 //handles comment submission

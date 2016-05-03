@@ -21,7 +21,9 @@ var start = function(){
         return "\u25BC";
       }
     };
-
+    $scope.getNumber = function(num){
+      return new Array(parseInt(num));
+    };
     $scope.heart = function(index){
       if($scope.holidays[index].heart){
         $scope.holidays[index].heart = false;
@@ -101,21 +103,39 @@ var start = function(){
     $scope.story = {};
     $scope.buttonText = "Share";
     $("#country").countrySelect();
-    var shared = false;
-    $scope.submit = function(story){
-      if(shared){
-        return;
+
+
+
+    function resetFormAnimation(){
+      var elem = document.getElementById("story-form");
+      var pos = window.getComputedStyle(elem,null).getPropertyValue("marginTop");
+      var width = elem.clientHeight;
+      console.log(width);
+      var id = setInterval(frame, 5);
+      function frame(){
+        pos = pos - 4;
+        elem.style.marginTop = pos + 'px';
+        if(pos < -width){
+          clearInterval(id);
+          elem.style.marginTop = "5%";
+          $scope.story = {};
+          return;
+        }
       }
+    }
+
+
+    $scope.submit = function(story){
       $scope.story = angular.copy(story);
       console.log(story);
          $scope.buttonText = "Done!";
-         shared = true;
          story.Country = $("#country").countrySelect("getSelectedCountryData").name;
          $http({
            method: 'POST',
            url: '/post?name=' + story.Name + '&dest=' + story.Destination + '&country=' + story.Country + '&email=' + story.Email + '&desc=' + story.Description + "&weather=" + story.Weather + "&price=" + story.Price
          }).then(function(){
            console.log("hi");
+           resetFormAnimation();
          }, function(){
            console.log("oh dear");
          }

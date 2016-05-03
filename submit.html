@@ -32,14 +32,32 @@
   <title>Holiday Recommender</title>
 
 </head>
-<body ng-app="webApp">
-  <div class="nav-bar">
-      <div class="nav-bar-head">
-          HOLIDAY RECOMMENDER
+<body ng-app="webApp" class="small-header">
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="row">
+        <a class="navbar-brand" href="#">Holiday thingy</a>
+        <ul class="nav navbar-nav">
+          <li>
+            <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+          </li>
+          <li>
+            <a class="navbar-link" alink="white" href="#">Contact Us</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="submit.html" du-smooth-scroll>Your Story</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="#diaries" du-smooth-scroll>Diaries</a>
+          </li>
+          <li>
+            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+          </li>
+        </ul>
       </div>
-      <div class="nav-bar-tabs">
-          <div class="tabs"><a alink="white" href="index.html">Home</a></div>
-      </div>
+
+    </div>
+
   </div>
 
   <div id="my-story" class="my-story" ng-controller="FormCtrl">
@@ -52,7 +70,7 @@
       <form name="storyForm" ng-show="{{!storyForm.$submitted}}" >
           <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required><br />
           <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br />
-          <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday Destination" required><br />
+          <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required><br />
           <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required><br /><br />
           <select class="form-control" ng-model="story.Price">
             <option value="">Please select a price</option>

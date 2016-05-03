@@ -32,54 +32,78 @@
 
 
 <body ng-controller="FeedCtrl" ng-app="webApp">
-  <div class="nav-bar">
-      <div class="nav-bar-head">
-          HOLIDAY RECOMMENDER
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="row">
+        <a class="navbar-brand" href="#">Holiday thingy</a>
+        <ul class="nav navbar-nav">
+          <li>
+            <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+          </li>
+          <li>
+            <a class="navbar-link" alink="white" href="#">Contact Us</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="submit.html" du-smooth-scroll>Your Story</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="#diaries" du-smooth-scroll>Diaries</a>
+          </li>
+          <li>
+            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+          </li>
+        </ul>
       </div>
-      <div class="nav-bar-tabs">
-          <div class="tabs"><a alink="white" href="index.html">Home</a></div>
+      <div class="row">
+        <div class = "form-horizontal">
+          <input class="form-control" type="search" ng-model="query.text" placeholder="Filter"/>
+        </div>
 
       </div>
+    </div>
 
   </div>
+
   <a href="submit.html" class="postButton"><button class="btn btn-default" >Submit A Holiday</button></a>
-  <div class = "sidebar">
-    <div class = "form-horizontal">
-      <input class="form-control" type="search" ng-model="query.text" placeholder="Filter"/>
+  <div class="container-fluid">
+
+  </div>
+  <div class="container">
+    <div class="row">
+
+    <div class="col-md-4 col-xs-6" ng-repeat="hol in holidays | filter:query.text">
+      <div class="thumbnail">
+        <img src="{{hol.image}}" class="card-img" />
+        <div class="card-block" >
+          <h3 class="card-title">
+            {{hol.destination}},{{hol.country}}
+            <span ng-click="heart($index)" ng-style="getHeartStyle($index)" class="heart">{{hol.rating}} ♥</span>
+          </h3>
+          <p class="card-text">
+            Weather: <object class="small-icon"data="img/weather1.svg" type="image/svg+xml"></object> <br/>
+            Price: <object ng-repeat="i in getNumber(hol.price) track by $index" class="small-icon"data="img/dollardollarbillsyall.svg" type="image/svg+xml"></object><br/>
+            {{hol.description}}
+          </p>
+        </div>
+        <button type="button"class="btn btn-primary btn-block btn-sm"  ng-click="hol.showing = !hol.showing">{{getArrow(hol.showing)}}</button>
+        <div uib-collapse="!hol.showing" class="details">
+          <div class="comment" ng-repeat="comment in hol.comments">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>{{comment.name}}</h4>
+            <p>
+              {{comment.contents}}
+            </p>
+          </div>
+          <div class="form-inline" ng-hide="hol.Commented">
+            <h4>Write a comment</h4><br/>
+            <textarea type="text" class="form-control"name="comment" roes="3" ng-model="comment.contents" placeholder="your thoughts..." ></textarea><br/>
+            <input type="text" class="form-control"name="name" ng-model="comment.name" placeholder="Name" /><br/>
+            <button type="submit" class="btn btn-default" ng-click="submitComment(comment, $index)">Submit</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="feed">
-  <div class="card" ng-repeat="hol in holidays | filter:query.text">
-    <img class="card-img-top" src="{{hol.image}}" />
-    <div class="card-block" >
-      <h3 class="card-title">
-         {{hol.destination}},{{hol.country}}
-         <span ng-click="heart($index)" ng-style="getHeartStyle($index)" class="heart">{{hol.rating}} ♥</span>
-        </h3>
-      <p class="card-text">
-         Weather: {{hol.weather}} <br/>
-         Price: 5 <br/>
-         {{hol.description}}
-       </p>
-    </div>
-    <div class="expand"  ng-click="hol.showing = !hol.showing">{{getArrow(hol.showing)}}</div>
-    <div uib-collapse="!hol.showing" class="details">
-
-      <div class="comment" ng-repeat="comment in hol.comments">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>{{comment.name}}</h4>
-          <p>
-          {{comment.contents}}
-        </p>
-      </div>
-      <div class="form-inline" ng-hide="hol.Commented">
-        <h4>Write a comment</h4><br/>
-        <textarea type="text" class="form-control"name="comment" roes="3" ng-model="comment.contents" placeholder="your thoughts..." ></textarea><br/>
-        <input type="text" class="form-control"name="name" ng-model="comment.name" placeholder="Name" /><br/>
-        <button type="submit" class="btn btn-default" ng-click="submitComment(comment, $index)">Submit</button>
-      </div>
-      </div>
-    </div>
   </div>
 
 </body>

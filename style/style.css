@@ -10,10 +10,14 @@ body{
     /*background-image: url('https://i.imgur.com/d59jgJM.jpg');*/
     background-size: cover;
     background-color: #ECEFF1;
+    padding-top: 100px;
 }
 h1{
   margin:auto;
   margin-top:0;
+}
+.small-header{
+  padding-top:10px;
 }
 a {
     color: white;
@@ -23,12 +27,19 @@ a:hover {
     color: orangered;
     text-decoration: none;
 }
+col-md-4{
+  padding: 5px;
+}
+
 .arrow{
   color: rgb(44, 95, 195);
   cursor:pointer;
   float:right;
 }
-
+.small-icon{
+  height:40px;
+  margin-bottom: -10px;
+}
 .details{
   margin:0;
   padding: 0;
@@ -302,16 +313,18 @@ box-shadow: 0px 0px 8px 0px #000000;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-.card img{
+.card-img{
   width:100%;
   margin:0px;
-  max-height: 600px;
+  max-height: 200px;
+  height:200px;
   object-fit: cover;
 }
+
 .details p{
   margin-left: 42px;
 }
-.card .avatar{
+.avatar{
   width:32px;
   height:32px;
   border-radius: 50%;

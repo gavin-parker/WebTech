@@ -12,6 +12,9 @@ body{
     background-color: #ECEFF1;
     padding-top: 100px;
 }
+@media screen and (max-width: 768px) {
+    body { padding-top: 250px; }
+}
 h1{
   margin:auto;
   margin-top:0;
@@ -120,7 +123,7 @@ col-md-4{
 
 }
 .diary1 {
-    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/couple.png);
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
     background-size: 100%;
      -moz-animation: fadein 2s; /* Firefox */
     -webkit-animation: fadein 2s; /* Safari and Chrome */
@@ -142,17 +145,17 @@ col-md-4{
     display: none;
 }
 .diary2 {
-     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/friends.png);
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
     background-size: 100%;
     text-align: right;
 }
 .diary3 {
-     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/amy.png) no-repeat;
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), no-repeat;
     background-size: 100%;
 
 }
 .diary4 {
-     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/ibiza.png);
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
     background-size: 100%;
     text-align: right;
 }

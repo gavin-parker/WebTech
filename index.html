@@ -33,7 +33,7 @@
 </head>
 
 
-<body ng-app="webApp" class="small-header">
+<body ng-app="webApp" ng-controller="indexCtrl" class="small-header">
 
   <div class="navbar navbar-default navbar-fixed-top">
     <a class="navbar-brand" href="#">Holiday thingy</a>
@@ -96,29 +96,28 @@
     </a>
   </div>
   <div id="diaries">
-    <div  class="diary1">
+    <div  class="diary1"ng-style="{'background-image':'url('+holidays[0].image+')'}" >
       <div id="diary1-text">
-        "We found love in Thailand"
-        <br><font size="5pt" align="right">- John & Sophie</font>
+        {{holidays[0].description}}
+        <br><font size="5pt" align="right">- {{holidays[0].name}}</font>
       </div>
     </div>
-    <div id="diary2" class="diary2">
+    <div id="diary2" class="diary2" ng-style="{'background-image':'url('+holidays[1].image+')'}">
       <div id="diary2-text">
-        "Best trip of my life !
-        <br>Thank you Holiday Recommender"
-        <br><font size="5pt" align="right">- Sam</font>
+        {{holidays[1].description}}
+        <br><font size="5pt" align="right">- {{holidays[1].name}}</font>
       </div>
     </div>
-    <div class="diary3">
+    <div class="diary3" ng-style="{'background-image':'url('+holidays[2].image+')'}">
       <div id="diary3-text">
-        "I found inner peace in <br>New Zealand
-        <br><font size="5pt" align="right">- Amy</font>
+        {{holidays[2].description}}
+        <br><font size="5pt" align="right">- {{holidays[2].name}}</font>
       </div>
     </div>
-    <div class="diary4">
+    <div class="diary4" ng-style="{'background-image':'url('+holidays[3].image+')'}">
       <div id="diary4-text">
-        "There's nothing like <br>partying in Ibiza
-        <br><font size="5pt" align="right">- Roxanne</font>
+        {{holidays[3].description}}
+        <br><font size="5pt" align="right">- {{holidays[3].name}}</font>
       </div>
     </div>
   </div>

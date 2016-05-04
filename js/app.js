@@ -141,6 +141,24 @@ var start = function(){
          }
         );
     };
+  })
+  .controller('indexCtrl', function($scope, $http){
+    $scope.holidays = [];
+    var recieveHolidays = function(result){
+      console.log(result);
+      $scope.holidays = sortBy(result, "rating").reverse();
+      console.log($scope.holidays);
+    };
+    $http.get('?query=holidays').success(recieveHolidays);
+    var sortBy = function(holidays, key){
+      return holidays.sort(function(a, b) {
+              var x = a[key]; var y = b[key];
+              return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+      });
+    };
+
+
+
   });
 };
 start();

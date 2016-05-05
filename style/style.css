@@ -30,8 +30,16 @@ a:hover {
     color: orangered;
     text-decoration: none;
 }
+navbar-link:hover{
+  color:orangered;
+  text-decoration: none;
+}
 col-md-4{
   padding: 5px;
+}
+#contact{
+  background-color: #757575;
+  color: white;
 }
 
 .arrow{

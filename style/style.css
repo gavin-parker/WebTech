@@ -202,6 +202,127 @@ col-md-4{
     z-index: 2;
     line-height: 100%;
 }
+.trending-locations {
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+.trending-title {
+    width: 100%;
+    height: 0%;
+    font-family: 'Montserrat';
+    font-size: 30pt;
+    font-weight: bold;
+    text-align: center;
+}
+.trending {
+    width: 100%;
+    height: 100%;
+    /*background-size: 100%;*/
+    background: linear-gradient(rgba(255, 255, 0, 0.5),rgba(255, 255,0, 0.5)), url(../img/destinations1.png);
+}
+@-webkit-keyframes vibrate {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+@-webkit-keyframes vibrate1 {
+    0% {
+         -webkit-transform: translate(2px, 2px) rotate(0deg);
+    }
+    25% {
+         -webkit-transform: translate(2px, -2px) rotate(0deg);
+    }
+    50% {
+         -webkit-transform: translate(-2px, -2px) rotate(0deg);
+    }
+    75% {
+         -webkit-transform: translate(-2px, 2px) rotate(0deg);
+    }
+    100% {
+         -webkit-transform: translate(2px, 2px) rotate(0deg);
+    }
+}
+.loc1, .loc2, .loc3, .loc4, .loc5 {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    margin: 0px;
+}
+.loc1 {
+    left: 260px;
+    top: 160px;
+}
+.loc2 {
+    left: 560px;
+    top: 110px;
+}
+.loc3 {
+    left: 855px;
+    top: 230px;
+}
+.loc4 {
+    left: 768px;
+    top: 165px;
+}
+.loc5 {
+    left: 240px;
+    top: 290px;
+    //-webkit-animation: vibrate1 0.1s linear 0s 30;
+}
+.loc_img {
+    width: 25px;
+    height: 25px;
+    /*animation:vibrate1 0.1s linear 0s 30;*/
+    -webkit-animation: vibrate1 0.6s linear 0s 30;
+    -webkit-animation-iteration-count: infinite;
+    /*
+    -webkit-animation-name: vibrate;
+	-webkit-animation-duration: 0.1s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+    */
+}
+/* Tooltip text */
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.loc1:hover .tooltiptext {
+    visibility: visible;
+}
+.loc2:hover .tooltiptext {
+    visibility: visible;
+}
+.loc3:hover .tooltiptext {
+    visibility: visible;
+}
+.loc4:hover .tooltiptext {
+    visibility: visible;
+}
+.loc5:hover .tooltiptext {
+    visibility: visible;
+}
 #country{
   width:100%;
   margin: auto;
@@ -234,12 +355,12 @@ col-md-4{
   color: white;
   float:left;
 }
-.nav-bar {
+.navbar {
     height: 6%;
     width: 100%;
     z-index: 1;
     position: fixed;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgb(255,255,255);
     /* Adds shadow to the bottom of the bar */
 -webkit-box-shadow: 0px 0px 8px 0px #000000;
 -moz-box-shadow: 0px 0px 8px 0px #000000;
@@ -252,17 +373,22 @@ box-shadow: 0px 0px 8px 0px #000000;
     -webkit-backface-visibility: hidden;
 
 }
-.nav-bar-head {
+.navbar-brand {
     width: 50%;
     height: 100%;
     padding: 0.5% 2%;
     float: left;
     color: darkorange;
 }
-.nav-bar-tabs {
+.nav navbar-nav {
     width: 50%;
     height: 100%;
     float: right;
+}
+.navbar-link {
+    background: deepskyblue;
+    color: white;
+    font-weight: bold;
 }
 .tabs {
     float: right;

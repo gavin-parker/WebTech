@@ -9,7 +9,6 @@ var https = require('https');
 var fs = require('fs');
 var path = require('path');
 var url = require( "url" );
-var imgapi = require("gettyimages-api");
 var queryString = require( "querystring" );
 var sql = require("sqlite3");
 var events = require("events");

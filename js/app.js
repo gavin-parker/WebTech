@@ -136,6 +136,8 @@ var start = function(){
          }).then(function(){
            console.log("hi");
            resetFormAnimation();
+           story = {};
+           $scope.story = {};
          }, function(){
            console.log("oh dear");
          }
@@ -156,8 +158,42 @@ var start = function(){
               return ((x < y) ? -1 : ((x > y) ? 1 : 0));
       });
     };
+  })
+  .controller('mapCtrl', function($scope, $http){
+    var mymap = L.map('map').setView([51.505, -0.09], 2);
+    console.log("hello");
+    //http://otile4.mqcdn.com/tiles/1.0.0/osm/3/5/2.png
+    var osmUrl='http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png';
+	  var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+	  var osm = new L.TileLayer(osmUrl, {minZoom: 2, maxZoom: 4, attribution: osmAttrib});
+    mymap.addLayer(osm);
 
+    $scope.holidays = [];
 
+    var recieveHolidays = function(result){
+      console.log(result);
+      $scope.holidays = sortBy(result, "rating").reverse();
+      for(var i=0;i<10;i++){
+        try{
+        var loc = JSON.parse($scope.holidays[i].loc);
+        console.log(loc);
+        var marker = L.marker(loc).addTo(mymap);
+        var popup = "<b>" + $scope.holidays[i].destination + "</b><br/>" + $scope.holidays[i].description;
+        marker.bindPopup(popup);
+      }catch(error){
+
+      }
+      }
+    };
+
+    $http.get('?query=holidays').success(recieveHolidays);
+
+    var sortBy = function(holidays, key){
+      return holidays.sort(function(a, b) {
+              var x = a[key]; var y = b[key];
+              return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+      });
+    };
 
   });
 };

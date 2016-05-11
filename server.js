@@ -17,17 +17,18 @@ sql.verbose();
 var exists = fs.existsSync("test.db");
 var db = new sql.Database("test.db");
 db.serialize(startup);
-var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?,?,?)");
+var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?,?,?,?)");
 var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
 var updateImage = db.prepare("update hols set image = ? where destination = ?");
 var addRating = db.prepare("update hols set rating = rating + ? where id= ?");
+var addLoc = db.prepare("update hols set loc = ? where destination = ?");
+
 function startup(){
   if(!exists){
-  db.run("create table hols (id integer primary key, name text, destination text, country text, email text, description text, image text, rating int, weather text, price text)", err);
+  db.run("create table hols (id integer primary key, name text, destination text, country text, email text, description text, image text, rating int, weather text, price text, loc text)", err);
   db.run("create table comments (id integer primary key, name text, contents text,hol integer)",err);
 }
 }
-
 function err(e){
   if(e){
   console.log(e);
@@ -230,6 +231,31 @@ function saveImage(imageURL, location){
     updateImage.run(filename,location);
   });
 }
+function getLocation(location, country){
+  console.log("getting location");
+  try{
+  var key = '2387da422318c8df9761850d85f0d234';
+  var api_url = "https://api.opencagedata.com/geocode/v1/json?q=" + location + "&key=" + key;
+  https.get({
+    host: 'api.opencagedata.com',
+    path: "/geocode/v1/json?q=" + location + "&key=" + key
+  }, function(response){
+    var body = "";
+    response.on('data',function(d){
+      body += d;
+    });
+    response.on('end',function(){
+      console.log(body);
+      var result = JSON.parse(body);
+      console.log(result);
+      var loc = result.results[0].geometry;
+      addLoc.run(JSON.stringify(loc),location);
+    });
+  });
+}catch(error){
+  console.log(error);
+}
+}
 
 function getImage(location,country){
   https.get({
@@ -294,10 +320,12 @@ function submitHoliday(story){
   }
   try{
   var image = "image";
-  insertHol.run(null,story.name, story.dest,story.country, story.email, story.desc, 'image',0,story.weather,story.price);
+  insertHol.run(null,story.name, story.dest,story.country, story.email, story.desc, 'image',0,story.weather,story.price, 'loc');
   getImage(story.dest);
 }catch(err){
+  console.log(err);
 }
+  getLocation(story.dest, story.country);
 }
 
 //handles comment submission

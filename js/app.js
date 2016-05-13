@@ -167,7 +167,7 @@ var start = function(){
 	  var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 	  var osm = new L.TileLayer(osmUrl, {minZoom: 2, maxZoom: 4, attribution: osmAttrib});
     mymap.addLayer(osm);
-
+    mymap.invalidateSize();
     $scope.holidays = [];
 
     var recieveHolidays = function(result){

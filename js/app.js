@@ -130,9 +130,16 @@ var start = function(){
       console.log(story);
          $scope.buttonText = "Done!";
          story.Country = $("#country").countrySelect("getSelectedCountryData").name;
+         var url =  '/post?name=' + encodeURIComponent(story.Name);
+         url += '&dest='  + encodeURIComponent(story.Destination);
+         url += '&country=' + encodeURIComponent(story.Country);
+         url += '&email=' + encodeURIComponent(story.Email);
+         url += '&desc=' + encodeURIComponent(story.Description);
+         url +=  "&weather=" + story.Weather;
+         url += "&price=" + story.Price;
          $http({
            method: 'POST',
-           url: '/post?name=' + story.Name + '&dest=' + story.Destination + '&country=' + story.Country + '&email=' + story.Email + '&desc=' + story.Description + "&weather=" + story.Weather + "&price=" + story.Price
+           url:url
          }).then(function(){
            console.log("hi");
            resetFormAnimation();

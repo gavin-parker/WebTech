@@ -159,6 +159,13 @@ col-md-4{
   padding-left: 0px;
   padding-right: 0px;
 }
+.logoImg{
+  height:100%;
+  margin-top: 0pc;
+  margin-bottom: 0px;
+  margin: -2%;
+
+}
 .diary2 {
      background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
     background-size: 100%;

@@ -224,7 +224,7 @@ function getHolidays(query,request,response)
   });
 }
 function saveImage(imageURL, location){
-  var filename = "./img/" + location + ".jpg";
+  var filename = "./img/" + encodeURIComponent(location) + ".jpg";
   var file = fs.createWriteStream(filename);
   var request = https.get(imageURL,function(response){
     response.pipe(file);
@@ -238,7 +238,7 @@ function getLocation(location, country){
   var api_url = "https://api.opencagedata.com/geocode/v1/json?q=" + location + "&key=" + key;
   https.get({
     host: 'api.opencagedata.com',
-    path: "/geocode/v1/json?q=" + location + "&key=" + key
+    path: "/geocode/v1/json?q=" + encodeURIComponent(location) + "&key=" + key
   }, function(response){
     var body = "";
     response.on('data',function(d){
@@ -260,7 +260,7 @@ function getLocation(location, country){
 function getImage(location,country){
   https.get({
     host : 'pixabay.com',
-    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + location + '&image_type=photo&orientation=horizontal&category=travel'
+    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + encodeURIComponent(location) + '&image_type=photo&orientation=horizontal&category=travel'
   }, function(response){
       var body = '';
       response.on('data', function(d) {
@@ -286,7 +286,7 @@ function getImage(location,country){
 function getBackupImage(location,country){
   https.get({
     host : 'pixabay.com',
-    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + country + '&image_type=photo&orientation=horizontal&category=travel'
+    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + encodeURIComponent(country) + '&image_type=photo&orientation=horizontal&category=travel'
   }, function(response){
       var body = '';
       response.on('data', function(d) {

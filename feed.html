@@ -73,7 +73,11 @@
 
     <div class="col-md-4" ng-repeat="hol in holidays | filter:query.text">
       <div class="thumbnail">
+        <div class="frame">
+
         <img src="{{hol.image}}" class="card-img" />
+      </div>
+
         <div class="card-block" >
           <h3 class="card-title">
             {{hol.destination}},{{hol.country}}

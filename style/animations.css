@@ -1,0 +1,8 @@
+.diary{
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.diary.ng-hide{
+  opacity:0;
+}

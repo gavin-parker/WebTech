@@ -151,11 +151,24 @@ var start = function(){
         );
     };
   })
-  .controller('indexCtrl', function($scope, $http){
+  .controller('indexCtrl', function($scope, $http, $interval){
     $scope.holidays = [];
+    $scope.display = [];
+    var item = 0;
+    $scope.show = [1,1,1,1];
+    var displayUpdater;
     var recieveHolidays = function(result){
       console.log(result);
       $scope.holidays = sortBy(result, "rating").reverse();
+      $scope.display[0] = $scope.holidays[0];
+      $scope.display[0].id = 0;
+      $scope.display[1] = $scope.holidays[1];
+      $scope.display[1].id = 1;
+      $scope.display[2] = $scope.holidays[2];
+      $scope.display[2].id = 2;
+      $scope.display[3] = $scope.holidays[3];
+      $scope.display[3].id = 3;
+      displayUpdater = $interval(updateItem,5000);
       console.log($scope.holidays);
     };
     $http.get('?query=holidays').success(recieveHolidays);
@@ -165,8 +178,22 @@ var start = function(){
               return ((x < y) ? -1 : ((x > y) ? 1 : 0));
       });
     };
+    var updateItem = function(){
+      var index = $scope.display[item].id;
+      var len = $scope.holidays.length;
+      $scope.display[item] = $scope.holidays[(index+4)%len];
+      $scope.display[item].id = (index+4)%len;
+      item = (item+1)%4;
+      console.log("updated" + item);
+      $scope.show[item] = 1;
+    };
   })
   .controller('mapCtrl', function($scope, $http){
+    var myMarker = L.icon({
+      iconUrl: './img/locationsmall.png',
+      iconAnchor: [8,8],
+      popupAnchor: [8, 8]
+    });
     var mymap = L.map('map').setView([51.505, -0.09], 2);
     console.log("hello");
     //http://otile4.mqcdn.com/tiles/1.0.0/osm/3/5/2.png
@@ -184,7 +211,7 @@ var start = function(){
         try{
         var loc = JSON.parse($scope.holidays[i].loc);
         console.log(loc);
-        var marker = L.marker(loc).addTo(mymap);
+        var marker = L.marker(loc, {icon:myMarker}).addTo(mymap);
         var popup = "<b>" + $scope.holidays[i].destination + "</b><br/>" + $scope.holidays[i].description;
         marker.bindPopup(popup);
       }catch(error){

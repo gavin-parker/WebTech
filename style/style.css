@@ -118,7 +118,7 @@ col-md-4{
     height: 100%;
 
 }
-.diary1, .diary2, .diary3, .diary4 {
+.diary{
     width: 50%;
     height: 50%;
     padding-left: 4%;
@@ -128,14 +128,13 @@ col-md-4{
     font-size: 20pt;
     color: white;
     float: left;
-
 }
-.diary1 {
-    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
-    background-size: 100%;
-     -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+.diary {
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+  background-size: cover;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
 }
 .diary1:hover {
     background-size: 100%;
@@ -159,6 +158,7 @@ col-md-4{
   padding-left: 0px;
   padding-right: 0px;
 }
+
 .logoImg{
   height:100%;
   margin-top: 0pc;
@@ -168,17 +168,14 @@ col-md-4{
 }
 .diary2 {
      background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
-    background-size: 100%;
     text-align: right;
 }
 .diary3 {
      background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), no-repeat;
-    background-size: 100%;
 
 }
 .diary4 {
      background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
-    background-size: 100%;
     text-align: right;
 }
 .my-story {
@@ -458,12 +455,17 @@ box-shadow: 0px 0px 8px 0px #000000;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-.card-img{
-  width:100%;
-  margin:0px;
-  max-height: 200px;
+.frame{
   height:200px;
-  max-width: 300px;
+  width:350px;
+  overflow: hidden;
+  text-align: center;
+  margin: auto;
+}
+.card-img{
+  margin:0px;
+  height:200px;
+  width: 350px;
   object-fit: cover;
   overflow: hidden;
 }

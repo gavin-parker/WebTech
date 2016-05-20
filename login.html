@@ -16,40 +16,54 @@
   <script src="js/frameworks/countrySelect.min.js"></script>
 
   <script src="js/app.js"></script>
+  <script async src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'>
+  <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
+  <link rel="stylesheet" href="style/countrySelect.min.css" type="text/css" />
+  <link rel="stylesheet" href="style/style.css" type="text/css" />
+  <link href="style/animations.css" rel='stylesheet' type='text/css'/>
   <title>Holiday Recommender</title>
 </head>
 <body ng-app="webApp" ng-controller="loginCtrl">
-    <!--
-    <div class="navbar navbar-default navbar-fixed-top">
+    
+     <div class="navbar navbar-default">
+
     <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
       <div class="row">
-        <a class="navbar-brand" href="#"><img class="logoImg" src="img/logo.png" /></a>
         <ul class="nav navbar-nav">
           <li>
+            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+          </li>
+          <li>
             <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
           </li>
           <li>
             <a class="navbar-link" alink="white" href="#">Contact Us</a>
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="submit.html" du-smooth-scroll>Your Story</a>
+            <a class="navbar-link navbar-right" alink="white" href="login.html" >Sign in</a>
+
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="#diaries" du-smooth-scroll>Diaries</a>
-          </li>
-          <li>
-            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
-          </li>
+              <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">Welcome, Mudit</div></a>
+            </li>
         </ul>
       </div>
     </div>
-    </div>
-    -->
-   <!-- <div class="website-title">
-        VACATRON
-    </div>
-    -->
+
+  </div>
     <div class="website-title">
            <img src="img/new_logo1.png" width="10%"><br>
            VACATRON<br>

@@ -28,6 +28,12 @@ a:hover {
     color: orangered;
     text-decoration: none;
 }
+.current-user {
+    height: 10%;
+    color: orangered;
+    float: right;
+    width: 100%;
+}
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
   color:orangered;
   text-decoration: none;
@@ -385,7 +391,7 @@ col-md-4{
 -moz-box-shadow: 0px 0px 8px 0px #000000;
 box-shadow: 0px 0px 8px 0px #000000;
     font-family: 'Open Sans' , sans-serif;
-    font-size: 13pt;
+    font-size: 1.2em;
     color: white;
     font-weight: bold;
     -webkit-backface-visibility: hidden;
@@ -396,11 +402,21 @@ box-shadow: 0px 0px 8px 0px #000000;
   font-size: 120%;
     float: left;
     color: darkorange;
+  width: 20%;
 }
-
+.logo {
+   width: 20%;
+   float: left;
+   height: 100%;
+}
+.row {
+    float: right;
+    width: 70%;
+}
 .navbar-link {
     color: white;
     font-weight: bold;
+    
 }
 .tabs {
     float: right;

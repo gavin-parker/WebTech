@@ -42,28 +42,31 @@
   <div class="navbar navbar-default" ng-controller="navCtrl">
 
     <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
       <div class="row">
-        <a class="navbar-brand" href="#"><img class="logoImg" src="img/logo.png" /></a>
         <ul class="nav navbar-nav">
           <li>
+            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+          </li>
+          <li>
             <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
           </li>
           <li>
             <a class="navbar-link" alink="white" href="#">Contact Us</a>
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="submit.html" du-smooth-scroll>Your Story</a>
-          </li>
-          <li>
-            <a  class="navbar-link"alink="white" href="#diaries" du-smooth-scroll>Diaries</a>
-          </li>
-          <li>
-            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
-          </li>
-          <li>
-            <a class="navbar-link navbar-right" alink="white" href="login.html" >Login / Create an account</a>
+            <a class="" alink="white" href="login.html" >Sign in</a>
 
           </li>
+          <li>
+              <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">Welcome, Mudit</div></a>
+            </li>
         </ul>
         <div class="navbar-text">
           {{welcome}}

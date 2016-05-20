@@ -188,7 +188,7 @@ var start = function(){
       $scope.show[item] = 1;
     };
   })
-  .controller("loginCtrl",function($scope,$http) {
+  .controller("loginCtrl",function($scope,$http, $window) {
     $scope.isError = false;
     $scope.errorMessage="";
     console.log("hi");
@@ -209,6 +209,12 @@ var start = function(){
             $scope.isError = true;
           }else{
             $scope.isError = false;
+            if(typeof(Storage) !== "undefined"){
+              sessionStorage.setItem("user", user.name);
+              sessionStorage.setItem("pass", user.pass);
+            }else{
+              alert("You appear to be using an incompatible browser");
+            }
           }
         },function(){
           console.log("oh dear");
@@ -232,6 +238,7 @@ var start = function(){
                 $scope.isError = true;
               }else{
                 $scope.isError = false;
+                $window.location.href = 'index.html';
               }
             },function(){
               console.log("oh dear");
@@ -239,6 +246,18 @@ var start = function(){
         };
     }
   )
+  .controller('navCtrl', function($scope){
+    $scope.welcome = "";
+    if(typeof(Storage) !== "undefined"){
+      console.log("storage on");
+      var name = sessionStorage.getItem("user");
+      console.log(name);
+      if(name !== undefined){
+        $scope.welcome = "Hello, " + name + "!";
+      }
+    }
+
+  })
   .controller('mapCtrl', function($scope, $http){
     var myMarker = L.icon({
       iconUrl: './img/locationsmall.png',

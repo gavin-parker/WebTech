@@ -189,6 +189,9 @@ function handlePOST(request){
   }else{
     addRating.run(-1,query.holid);
   }
+  break;
+  case "/login":
+    console.log(data);
     break;
   }
 }

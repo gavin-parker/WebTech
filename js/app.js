@@ -189,17 +189,23 @@ var start = function(){
     };
   })
   .controller("loginCtrl",function($scope,$http) {
-        function login(user) {
-            var data = $.param({
-                json: JSON.stringify({
-                    name: user.name,
-                    pass: user.pass
-                })
-            
-            });
+    console.log("hi");
+        $scope.login = function(user) {
+          if(user === undefined){
+            return;
+          }
+          console.log("hi");
+            var data = JSON.stringify(user);
             console.log(data);
-            $http.post("/login?text=",data);
-        }        
+            $http({
+              method: 'POST',
+              url: '/login?user=' + user.name + '&pass=' + user.pass
+            }).then(function(){
+              console.log("yay");
+            },function(){
+              console.log("oh dear");
+            });
+        };
     }
   )
   .controller('mapCtrl', function($scope, $http){

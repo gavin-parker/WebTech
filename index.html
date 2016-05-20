@@ -43,7 +43,7 @@
 
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
-      <div class="row">
+      <div class="row nav-row">
         <ul class="nav navbar-nav">
           <li>
             <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
@@ -61,15 +61,14 @@
             <a class="navbar-link" alink="white" href="#">Contact Us</a>
           </li>
           <li>
-            <a class="" alink="white" href="login.html" >Sign in</a>
-
+            <a class="" alink="white" href="login.html" ng-show="!loggedIn" >Sign in</a>
+            <a class="" alink="white" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
           </li>
           <li>
-              <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">Welcome, Mudit</div></a>
+              <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
             </li>
         </ul>
         <div class="navbar-text">
-          {{welcome}}
         </div>
       </div>
     </div>

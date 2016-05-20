@@ -32,44 +32,50 @@
 
 
 <body ng-controller="FeedCtrl" ng-app="webApp">
-  <div class="navbar navbar-default">
+
+  <div class="navbar navbar-default" ng-controller="navCtrl">
+
     <div class="container-fluid">
-      <div class="row">
-        <a class="navbar-brand" href="#"><img class="logoImg" src="img/logo.png" /></a>
+      <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
+      <div class="row nav-row">
         <ul class="nav navbar-nav">
           <li>
+            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+          </li>
+          <li>
             <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
           </li>
           <li>
             <a class="navbar-link" alink="white" href="#">Contact Us</a>
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="submit.html" du-smooth-scroll>Your Story</a>
+            <a class="" alink="white" href="login.html" >Sign in</a>
+
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="#diaries" du-smooth-scroll>Diaries</a>
-          </li>
-          <li>
-            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
-          </li>
+              <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
+            </li>
         </ul>
+        <div class="navbar-text">
+        </div>
       </div>
       <div class="row">
-        <div class = "form-horizontal">
-          <input class="form-control" type="search" ng-model="query.text" placeholder="Filter"/>
-        </div>
+        <input class="form-control" type="search" ng-model="query.text" placeholder="Filter"/>
 
       </div>
     </div>
 
   </div>
 
-  <a href="submit.html" class="postButton"><button class="btn btn-default" >Submit A Holiday</button></a>
-  <div class="container-fluid">
 
-  </div>
+  <a href="submit.html" class="postButton"><button class="btn btn-default" >Submit A Holiday</button></a>
   <div class="container">
-    <div class="row">
 
     <div class="col-md-4" ng-repeat="hol in holidays | filter:query.text">
       <div class="thumbnail">
@@ -104,7 +110,6 @@
             <button type="submit" class="btn btn-default" ng-click="submitComment(comment, $index)">Submit</button>
           </div>
         </div>
-      </div>
     </div>
   </div>
 

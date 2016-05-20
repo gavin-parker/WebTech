@@ -30,40 +30,43 @@
   <title>Holiday Recommender</title>
 </head>
 <body ng-app="webApp" ng-controller="loginCtrl">
-    
-     <div class="navbar navbar-default">
 
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
-      <div class="row">
-        <ul class="nav navbar-nav">
-          <li>
-            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
-          </li>
-          <li>
-            <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
-          </li>
-          <li>
-            <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
-          </li>
-          <li>
-            <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
-          </li>
-          <li>
-            <a class="navbar-link" alink="white" href="#">Contact Us</a>
-          </li>
-          <li>
-            <a class="navbar-link navbar-right" alink="white" href="login.html" >Sign in</a>
 
-          </li>
-          <li>
-              <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">Welcome, Mudit</div></a>
+    <div class="navbar navbar-default" ng-controller="navCtrl">
+
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
+        <div class="row nav-row">
+          <ul class="nav navbar-nav">
+            <li>
+              <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
             </li>
-        </ul>
-      </div>
-    </div>
+            <li>
+              <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+            </li>
+            <li>
+              <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
+            </li>
+            <li>
+              <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
+            </li>
+            <li>
+              <a class="navbar-link" alink="white" href="#">Contact Us</a>
+            </li>
+            <li>
+              <a class="" alink="white" href="login.html" >Sign in</a>
 
-  </div>
+            </li>
+            <li>
+                <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
+              </li>
+          </ul>
+          <div class="navbar-text">
+          </div>
+        </div>
+      </div>
+
+    </div>
     <div class="website-title">
            <img src="img/new_logo1.png" width="10%"><br>
            VACATRON<br>

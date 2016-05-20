@@ -102,9 +102,19 @@ var start = function(){
   .controller('FormCtrl', function($scope, $http){
     $scope.story = {};
     $scope.buttonText = "Share";
+    $scope.name="";
+    $scope.loggedIn = false;
     $("#country").countrySelect();
 
-
+    if(typeof(Storage) !== "undefined"){
+      console.log("storage on");
+      var name = sessionStorage.getItem("user");
+      console.log(name);
+      if(name !== null){
+        $scope.name = name;
+        $scope.loggedIn = true;
+      }
+    }
 
     function resetFormAnimation(){
       var elem = document.getElementById("story-form");
@@ -209,12 +219,7 @@ var start = function(){
             $scope.isError = true;
           }else{
             $scope.isError = false;
-            if(typeof(Storage) !== "undefined"){
-              sessionStorage.setItem("user", user.name);
-              sessionStorage.setItem("pass", user.pass);
-            }else{
-              alert("You appear to be using an incompatible browser");
-            }
+
           }
         },function(){
           console.log("oh dear");
@@ -238,6 +243,12 @@ var start = function(){
                 $scope.isError = true;
               }else{
                 $scope.isError = false;
+                if(typeof(Storage) !== "undefined"){
+                  sessionStorage.setItem("user", user.name);
+                  sessionStorage.setItem("pass", user.pass);
+                }else{
+                  alert("You appear to be using an incompatible browser");
+                }
                 $window.location.href = 'index.html';
               }
             },function(){
@@ -248,15 +259,22 @@ var start = function(){
   )
   .controller('navCtrl', function($scope){
     $scope.welcome = "";
+    $scope.loggedIn = false;
+
     if(typeof(Storage) !== "undefined"){
       console.log("storage on");
       var name = sessionStorage.getItem("user");
       console.log(name);
-      if(name !== undefined){
+      if(name !== null){
         $scope.welcome = "Hello, " + name + "!";
+        $scope.loggedIn = true;
       }
     }
 
+    $scope.logout = function(){
+      sessionStorage.clear();
+      $route.reload();
+    };
   })
   .controller('mapCtrl', function($scope, $http){
     var myMarker = L.icon({

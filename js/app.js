@@ -4,10 +4,21 @@ var start = function(){
   .controller('FeedCtrl', function($scope, $http){
     $scope.test = 'hi';
     $scope.down = "\u25BC";
+    $scope.loggedIn = false;
+    var name = null;
     $scope.filter = function(query){
       console.log(query);
     };
 
+
+    if(typeof(Storage) !== "undefined"){
+      console.log("storage on");
+      name = sessionStorage.getItem("user");
+      console.log(name);
+      if(name !== null){
+        $scope.loggedIn = true;
+      }
+    }
     var recieveHolidays = function(result){
       console.log(result);
       $scope.holidays = sortBy(result, "rating").reverse();
@@ -80,7 +91,7 @@ var start = function(){
       $scope.holidays[index].comments.push(comment);
       $http({
         method: 'POST',
-        url: '/comment?text=' + comment.contents + '&name=' + comment.name + '&locID=' + $scope.holidays[index].id
+        url: '/comment?text=' + comment.contents + '&name=' + name + '&locID=' + $scope.holidays[index].id
       }).then(function(){
         console.log("submitted comment");
       }, function(){
@@ -178,7 +189,7 @@ var start = function(){
       $scope.display[2].id = 2;
       $scope.display[3] = $scope.holidays[3];
       $scope.display[3].id = 3;
-      displayUpdater = $interval(updateItem,5000);
+      displayUpdater = $interval(updateItem,3000);
       console.log($scope.holidays);
     };
     $http.get('?query=holidays').success(recieveHolidays);

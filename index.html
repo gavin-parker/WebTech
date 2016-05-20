@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <!--[if IE]>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 <![endif]-->
 <head>
   <meta charset="UTF-8" />
-  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <script src="js/frameworks/angular.min.js"></script>
   <script src="js/frameworks/angular-animate.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -18,13 +18,13 @@
   <script src="js/frameworks/countrySelect.min.js"></script>
   <script src="js/trending.js"></script>
 
-  <script async src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
 
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'/>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/countrySelect.min.css" type="text/css" />
   <link rel="stylesheet" href="style/style.css" type="text/css" />
@@ -42,7 +42,7 @@
   <div class="navbar navbar-default" ng-controller="navCtrl">
 
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
+      <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"/></a>
       <div class="row nav-row">
         <ul class="nav navbar-nav">
           <li>
@@ -88,7 +88,7 @@
     <div class="carousel-inner" role="listbox">
       <div class="item active" id="item1">
 
-        ENJOY SUNSET <br>IN BALI
+        ENJOY SUNSET <br/>IN BALI
       </div>
 
       <div class="item" id="item2">
@@ -96,7 +96,7 @@
       </div>
 
       <div class="item" id="item3">
-        FEEL <br>THE FRESHNESS<br> OF GERMANY
+        FEEL <br/>THE FRESHNESS<br/> OF GERMANY
       </div>
 
       <div class="item" id="item4">
@@ -118,40 +118,40 @@
     <div id="diary1" class="diary" ng-style="{'background-image':'url('+display[0].image+')'}" ng-show="show[0]">
       <div id="diary1-text">
         {{display[0].description}}
-        <br><font size="5pt" align="right">- {{display[0].name}}, {{display[0].destination}}</font>
+        <br/><p>- {{display[0].name}}, {{display[0].destination}}</p>
       </div>
     </div>
     <div id="diary2" class="diary" ng-style="{'background-image':'url('+display[1].image+')'}" ng-show="show[1]">
       <div id="diary2-text">
         {{display[1].description}}
-        <br><font size="5pt" align="right">- {{display[1].name}}, {{display[1].destination}}</font>
+        <br/><p>- {{display[1].name}}, {{display[1].destination}}</p>
       </div>
     </div>
     <div class="diary" ng-style="{'background-image':'url('+display[2].image+')'}" ng-show="show[2]">
       <div id="diary3-text">
         {{display[2].description}}
-        <br><font size="5pt" align="right">- {{display[2].name}}, {{display[2].destination}}</font>
+        <br/><p>- {{display[2].name}}, {{display[2].destination}}</p>
       </div>
     </div>
     <div class="diary" ng-style="{'background-image':'url('+display[3].image+')'}" ng-show="show[3]">
       <div id="diary4-text">
         {{display[3].description}}
-        <br><font size="5pt" align="right">- {{display[3].name}}, {{display[3].destination}}</font>
+        <br/><p>- {{display[3].name}}, {{display[3].destination}}</p>
       </div>
     </div>
   </div>
 
   <div id="my-story" class="my-story hidden-xs" ng-controller="FormCtrl">
     <div id="my-story-title" class="my-story-title">
-      SHARE <br> YOUR STORY
+      SHARE <br/> YOUR STORY
     </div>
     <div id="story-form" class="story-form">
       <div class="form-horizontal">
         <form name="storyForm" ng-show="{{!storyForm.$submitted}}" >
-          <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required><br />
-          <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br />
-          <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required><br />
-          <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required><br /><br />
+          <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required/><br />
+          <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required/><br />
+          <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required/><br />
+          <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required/><br /><br />
           <select class="form-control" ng-model="story.Price">
             <option value="">Please select a price</option>
             <option value="1">Bargain</option>
@@ -180,10 +180,10 @@
     <div class="form-horizontal">
       <h3>Submit a holiday</h3>
       <form name="storyForm" ng-show="{{!storyForm.$submitted}}" >
-        <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required><br />
-        <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br />
-        <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required><br />
-        <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required><br /><br />
+        <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required/><br />
+        <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required/><br />
+        <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required/><br />
+        <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required/><br /><br />
         <select class="form-control" ng-model="story.Price">
           <option value="">Please select a price</option>
           <option value="1">Bargain</option>
@@ -211,52 +211,8 @@
 
     </div>
   </div>
-  <!--
-    <div class="trending-locations">
-        <div class="trending-title">
-            TRENDING
-        </div>
-        <div class="trending" id="trending">
-            <div class="loc1">
-                <img class="loc_img" src="img/location1.png">
-                <span class="tooltiptext">New York</span>
-            </div>
-            <div class="loc2">
-                <img class="loc_img" src="img/location1.png">
-                <span class="tooltiptext">Paris</span>
-            </div>
-            <div class="loc3">
-                <img class="loc_img" src="img/location1.png">
-                <span class="tooltiptext">Goa</span>
-            </div>
-            <div class="loc4">
-                <img class="loc_img" src="img/location1.png">
-                <span class="tooltiptext">Dubai</span>
-            </div>
-            <div class="loc5">
-                <img class="loc_img" src="img/location1.png">
-                <span class="tooltiptext">Peru</span>
-            </div>
-        </div>
-
-    </div>
-  -->
-
-  <!--
-  <div class="title-carousel">
-
-  <uib-carousel interval="2000" no-wrap="false" >
-  <uib-slide ng-repeat="hol in display" active="hol.active" class="slide">
-  <span><h1>{{hol.Location}}</h1></span>
-  <img ng-src="{{hol.Images[0]}}" style="margin:auto;" class="carousel-img"/>
-</uib-slide>
-</uib-carousel>
-
-</div>
--->
 
 
-</div>
 <div class="container-fluid"id="contact" >
   <div class="row" >
     <div class="text-center">

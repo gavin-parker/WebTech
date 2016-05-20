@@ -55,8 +55,8 @@
             <a class="navbar-link" alink="white" href="#">Contact Us</a>
           </li>
           <li>
-            <a class="" alink="white" href="login.html" >Sign in</a>
-
+            <a class="" alink="white" href="login.html" ng-show="!loggedIn" >Sign in</a>
+            <a class="" alink="white" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
           </li>
           <li>
               <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
@@ -98,16 +98,21 @@
         <button type="button"class="btn btn-primary btn-block btn-sm"  ng-click="hol.showing = !hol.showing">{{getArrow(hol.showing)}}</button>
         <div uib-collapse="!hol.showing" class="details">
           <div class="comment" ng-repeat="comment in hol.comments">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/2000px-Smiley.svg.png" class="avatar"> <h4>{{comment.name}}</h4>
+            <h4>{{comment.name}}</h4>
             <p>
               {{comment.contents}}
             </p>
           </div>
           <div class="form-inline" ng-hide="hol.Commented">
+            <div ng-show="loggedIn">
+
             <h4>Write a comment</h4><br/>
             <textarea type="text" class="form-control"name="comment" roes="3" ng-model="comment.contents" placeholder="your thoughts..." ></textarea><br/>
-            <input type="text" class="form-control"name="name" ng-model="comment.name" placeholder="Name" /><br/>
             <button type="submit" class="btn btn-default" ng-click="submitComment(comment, $index)">Submit</button>
+          </div>
+          <div ng-hide="loggedIn">
+            <h4>Please log in to post a comment</h4>
+          </div>
           </div>
         </div>
     </div>

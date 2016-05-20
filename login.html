@@ -54,8 +54,8 @@
               <a class="navbar-link" alink="white" href="#">Contact Us</a>
             </li>
             <li>
-              <a class="" alink="white" href="login.html" >Sign in</a>
-
+              <a class="" alink="white" href="login.html" ng-show="!loggedIn" >Sign in</a>
+              <a class="" alink="white" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
             </li>
             <li>
                 <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
@@ -68,8 +68,8 @@
 
     </div>
     <div class="website-title">
-           <img src="img/new_logo1.png" width="10%"><br>
-           VACATRON<br>
+           <img src="img/new_logo1.png" width="10%"><br/>
+           VACATRON<br/>
            <div class="website-subtitle">
             HOLIDAY LIKE NEVER BEFORE
            </div>
@@ -77,20 +77,20 @@
     <div class="user-login" >
 
         <form class="login-form">
-            <!--Email<br>-->
+            <!--Email<br/>-->
             <div class="email">
                 <input class="credentials" type="text" placeholder="Username" name="username"  ng-model="user.name"style="font-size:15pt">
             </div>
-            <!--Password<br>-->
+            <!--Password<br/>-->
             <div class="password">
                 <input class="credentials" type="password" placeholder="Password" name="password" ng-model="user.pass"style="font-size:15pt">
             </div>
 
-            <br><br>
+            <br/><br/>
         </form>
 
         <div class="login-button" ng-click="login(user)">Login</div>
-        <div class="newuser">New User ?<br></div>
+        <div class="newuser">New User ?<br/></div>
         <div class="create-account-button" ng-click="create(user)">Create New Account</div>
 
     </div>
@@ -99,8 +99,8 @@
     </div>
     <!--
     <div class="website-subtitle">
-           <img src="img/new_logo.png" width="70%"><br>
-           VACATRON<br>
+           <img src="img/new_logo.png" width="70%"><br/>
+           VACATRON<br/>
 
     </div>
 -->

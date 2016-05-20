@@ -26,7 +26,7 @@ var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
 var updateImage = db.prepare("update hols set image = ? where destination = ?");
 var addRating = db.prepare("update hols set rating = rating + ? where id= ?");
 var addLoc = db.prepare("update hols set loc = ? where destination = ?");
-var register = accounts.prepare("insert into acc values (?,?,?,?)");
+var register = accounts.prepare("insert into acc values (?,?,?)");
 var sessions = [];
 function startup(){
   if(!exists){
@@ -36,7 +36,7 @@ function startup(){
 }
 function accountsStartup(){
   if(!accountsExists){
-    accounts.run("create table acc (user text, email text, pass text, salt text)",err);
+    accounts.run("create table acc (user text, pass text, salt text)",err);
   }
 }
 function err(e){
@@ -86,7 +86,6 @@ function start() {
     printAddresses();
     //var res = registerUser("Gavin","password1","gavin-parker@live.com");
     //console.log(res);
-    login("Gavin","password1","gavin-parker@live.com");
 }
 
 // Print out the server addresses.
@@ -138,8 +137,7 @@ function fail(response, code) {
 function serve(request, response) {
     var file = request.url;
     if(request.method == "POST"){
-      handlePOST(request);
-      response.end();
+      handlePOST(request,response);
       return;
     }
     if(request.method == "GET"){
@@ -167,7 +165,7 @@ function serve(request, response) {
 }
 
 //handles incoming POST requests
-function handlePOST(request){
+function handlePOST(request,response){
   console.log(request.url);
   var data = url.parse(request.url);
   var query = queryString.parse(data.query);
@@ -177,10 +175,12 @@ function handlePOST(request){
     case "/comment":
     console.log("comment request");
     submitComment(query.text, query.name, query.locID);
+    response.end();
     break;
     case "/post":
     console.log("post request");
     submitHoliday(query);
+    response.end();
     break;
     case "/rating":
     console.log("increment rating of" +  query.holid);
@@ -189,9 +189,17 @@ function handlePOST(request){
   }else{
     addRating.run(-1,query.holid);
   }
+  response.end();
+
   break;
   case "/login":
-    console.log(data);
+    console.log(query.user);
+    console.log(query.pass);
+    var res = login(query.user,query.pass, response);
+    console.log(res);
+    break;
+    case "/create":
+    registerUser(query.user,query.pass,response);
     break;
   }
 }
@@ -249,7 +257,7 @@ function saveImage(imageURL, location){
   });
 }
 
-function attemptLogin(username,password,email){
+function attemptLogin(username,password){
   var res = login(username,password,email);
   if(res){
     console.log("login successful");
@@ -261,13 +269,21 @@ function attemptLogin(username,password,email){
     console.log("login failed: incorrect password");
   }
 }
-function login(username, password, email){
+function login(username, password,response){
 
-  accounts.each("select * from acc where user = ?",username,function(err,row){
+  accounts.all("select * from acc where user = ?",username,function(err,rows){
+    row = rows[0];
+    if(rows.length === 0 || rows === undefined){
+      response.end("failure");
+      return;
+    }
     bcrypt.hash(password,row.salt,function(err,hash){
       if(hash == row.pass){
+        console.log(username + " logged in");
+        response.end("success");
         return true;
       }else{
+        response.end("failure");
         return false;
       }
     });
@@ -280,18 +296,20 @@ function checkUser(username){
 
   });
 }
-function registerUser(username,password,email){
+function registerUser(username,password,response){
 
   accounts.all("select * from acc where (user = ? or email = ?)",username,function(err,rows){
     if(rows === undefined || rows.length === 0 ){
       console.log("registering as " + username + "," + password);
       bcrypt.genSalt(10, function(err,salt){
         bcrypt.hash(password,salt,function(err,hash){
-          register.run(username,email,hash,salt);
+          register.run(username,hash,salt);
         });
       });
+      response.end("success");
       return "success";
     }else{
+      response.end("exists");
       return "user already exists";
     }
   //check existence

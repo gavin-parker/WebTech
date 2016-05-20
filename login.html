@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="style/login.css" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
   <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Caveat|Fira+Sans|Montserrat|Sniglet|Work+Sans' rel='stylesheet' type='text/css'>
+  <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
+
   <script src="js/frameworks/angular.min.js"></script>
   <script src="js/frameworks/angular-animate.min.js"></script>
   <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
@@ -17,7 +19,7 @@
 
   <title>Holiday Recommender</title>
 </head>
-<body ng-app="webApp">
+<body ng-app="webApp" ng-controller="loginCtrl">
     <!--
     <div class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -55,7 +57,7 @@
             HOLIDAY LIKE NEVER BEFORE
            </div>
     </div>
-    <div class="user-login" ng-controller="loginCtrl">
+    <div class="user-login" >
 
         <form class="login-form">
             <!--Email<br>-->
@@ -69,8 +71,13 @@
 
             <br><br>
         </form>
+
         <div class="login-button" ng-click="login(user)">Login</div>
-        <div class="create-account-button">Create New Account</div>
+        <div class="create-account-button" ng-click="create(user)">Create New Account</div>
+
+    </div>
+    <div class="alert alert-danger"role="alert" ng-show="isError">
+      {{errorMessage}}
     </div>
     <!--
     <div class="website-subtitle">

@@ -189,7 +189,32 @@ var start = function(){
     };
   })
   .controller("loginCtrl",function($scope,$http) {
+    $scope.isError = false;
+    $scope.errorMessage="";
     console.log("hi");
+    $scope.create = function(user){
+      if(user === undefined){
+        return;
+      }
+      console.log("hi");
+        var data = JSON.stringify(user);
+        console.log(data);
+        $http({
+          method: 'POST',
+          url: '/create?user=' + user.name + '&pass=' + user.pass
+        }).then(function(res){
+          console.log(res);
+          if(res.data == "failure"){
+            $scope.errorMessage = "A user with that name already exists";
+            $scope.isError = true;
+          }else{
+            $scope.isError = false;
+          }
+        },function(){
+          console.log("oh dear");
+        });
+
+    };
         $scope.login = function(user) {
           if(user === undefined){
             return;
@@ -200,8 +225,14 @@ var start = function(){
             $http({
               method: 'POST',
               url: '/login?user=' + user.name + '&pass=' + user.pass
-            }).then(function(){
-              console.log("yay");
+            }).then(function(res){
+              console.log(res.data);
+              if(res.data == "failure"){
+                $scope.errorMessage = "Incorrect username or password";
+                $scope.isError = true;
+              }else{
+                $scope.isError = false;
+              }
             },function(){
               console.log("oh dear");
             });

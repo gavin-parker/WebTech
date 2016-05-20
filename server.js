@@ -9,6 +9,7 @@ var https = require('https');
 var fs = require('fs');
 var path = require('path');
 var url = require( "url" );
+var bcrypt = require('bcryptjs');
 var queryString = require( "querystring" );
 var sql = require("sqlite3");
 var events = require("events");
@@ -16,18 +17,27 @@ var eventEmitter = new events.EventEmitter();
 sql.verbose();
 var exists = fs.existsSync("test.db");
 var db = new sql.Database("test.db");
+var accountsExists = fs.existsSync("accounts.db");
+var accounts = new sql.Database("accounts.db");
 db.serialize(startup);
+accounts.serialize(accountsStartup());
 var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?,?,?,?)");
 var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
 var updateImage = db.prepare("update hols set image = ? where destination = ?");
 var addRating = db.prepare("update hols set rating = rating + ? where id= ?");
 var addLoc = db.prepare("update hols set loc = ? where destination = ?");
-
+var register = accounts.prepare("insert into acc values (?,?,?,?)");
+var sessions = [];
 function startup(){
   if(!exists){
   db.run("create table hols (id integer primary key, name text, destination text, country text, email text, description text, image text, rating int, weather text, price text, loc text)", err);
   db.run("create table comments (id integer primary key, name text, contents text,hol integer)",err);
 }
+}
+function accountsStartup(){
+  if(!accountsExists){
+    accounts.run("create table acc (user text, email text, pass text, salt text)",err);
+  }
 }
 function err(e){
   if(e){
@@ -74,6 +84,9 @@ function start() {
     var httpsService = https.createServer(options, serve);
     httpsService.listen(ports[1], 'localhost');
     printAddresses();
+    var res = registerUser("Gavin","password1","gavin-parker@live.com");
+    console.log(res);
+    //login("Gavin","password1","gavin-parker@live.com");
 }
 
 // Print out the server addresses.
@@ -223,6 +236,7 @@ function getHolidays(query,request,response)
     //console.log("hols: " + holnum);
   });
 }
+//saves an image by url to local storage. Places new file path in database
 function saveImage(imageURL, location){
   var filename = "./img/" + encodeURIComponent(location) + ".jpg";
   var file = fs.createWriteStream(filename);
@@ -231,6 +245,57 @@ function saveImage(imageURL, location){
     updateImage.run(filename,location);
   });
 }
+
+function attemptLogin(username,password,email){
+  var res = login(username,password,email);
+  if(res){
+    console.log("login successful");
+    sessions.push({
+      user: username,
+      pass: password
+    });
+  }else{
+    console.log("login failed: incorrect password");
+  }
+}
+function login(username, password, email){
+
+  accounts.each("select * from acc where user = ?",username,function(err,row){
+    bcrypt.hash(password,row.salt,function(err,hash){
+      if(hash == row.pass){
+        return true;
+      }else{
+        return false;
+      }
+    });
+  });
+
+}
+function checkUser(username){
+  accounts.all("select * from acc where user = ?",username,function(err,rows){
+    console.log(rows);
+
+  });
+}
+function registerUser(username,password,email){
+
+  accounts.all("select * from acc where (user = ? or email = ?)",username,function(err,rows){
+    if(rows === undefined || rows.length === 0 ){
+      console.log("registering as " + username + "," + password);
+      bcrypt.genSalt(10, function(err,salt){
+        bcrypt.hash(password,salt,function(err,hash){
+          register.run(username,email,hash,salt);
+        });
+      });
+      return "success";
+    }else{
+      return "user already exists";
+    }
+  //check existence
+
+});
+}
+//uses geocoding api to get coords of a given city, and add to db
 function getLocation(location, country){
   console.log("getting location");
   try{
@@ -256,7 +321,7 @@ function getLocation(location, country){
   console.log(error);
 }
 }
-
+//attempts to find an image for a city through pixabay API
 function getImage(location,country){
   https.get({
     host : 'pixabay.com',
@@ -283,6 +348,7 @@ function getImage(location,country){
         });
       });
 }
+//attempts to find image of country with pixabay API
 function getBackupImage(location,country){
   https.get({
     host : 'pixabay.com',

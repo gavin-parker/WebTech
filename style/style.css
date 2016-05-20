@@ -10,18 +10,16 @@ body{
     /*background-image: url('https://i.imgur.com/d59jgJM.jpg');*/
     background-size: cover;
     background-color: #ECEFF1;
-    padding-top: 100px;
+    padding-top: 0px;;
 }
 @media screen and (max-width: 768px) {
-    body { padding-top: 250px; }
+    body { padding-top: 0px; }
 }
 h1{
   margin:auto;
   margin-top:0;
 }
-.small-header{
-  padding-top:10px;
-}
+
 a {
     color: white;
     transition: all .5s;
@@ -213,6 +211,17 @@ col-md-4{
     z-index: 2;
     line-height: 100%;
 }
+#mobile-form{
+  font-size: 17pt;
+  margin: 2px;
+  text-align: center;
+  color: black;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  z-index: 2;
+  line-height: 100%;
+}
 .trending-locations {
     width: 100%;
     height: 100%;
@@ -367,11 +376,10 @@ col-md-4{
   float:left;
 }
 .navbar {
-    height: 6%;
     width: 100%;
     z-index: 1;
-    position: fixed;
-    background-color: rgb(255,255,255);
+    margin-bottom: 0px;
+      background-color: rgb(255,255,255);
     /* Adds shadow to the bottom of the bar */
 -webkit-box-shadow: 0px 0px 8px 0px #000000;
 -moz-box-shadow: 0px 0px 8px 0px #000000;
@@ -380,7 +388,6 @@ box-shadow: 0px 0px 8px 0px #000000;
     font-size: 13pt;
     color: white;
     font-weight: bold;
-    margin-top: 0;
     -webkit-backface-visibility: hidden;
 
 }

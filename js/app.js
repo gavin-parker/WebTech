@@ -218,6 +218,8 @@ var start = function(){
 
       }
       }
+      mymap.invalidateSize();
+
     };
 
     $http.get('?query=holidays').success(recieveHolidays);

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style/login.css" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Caveat|Fira+Sans|Montserrat|Sniglet|Work+Sans' rel='stylesheet' type='text/css'>
+  <title>Holiday Recommender</title>
+</head>
+<body>
+    <!--
+    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="row">
+        <a class="navbar-brand" href="#"><img class="logoImg" src="img/logo.png" /></a>
+        <ul class="nav navbar-nav">
+          <li>
+            <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+          </li>
+          <li>
+            <a class="navbar-link" alink="white" href="#">Contact Us</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="submit.html" du-smooth-scroll>Your Story</a>
+          </li>
+          <li>
+            <a  class="navbar-link"alink="white" href="#diaries" du-smooth-scroll>Diaries</a>
+          </li>
+          <li>
+            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    -->
+   <!-- <div class="website-title">
+        VACATRON
+    </div>
+    -->
+    <div class="website-title">
+           <img src="img/new_logo1.png" width="10%"><br>
+           VACATRON<br>
+           <div class="website-subtitle">
+            HOLIDAY LIKE NEVER BEFORE
+           </div>
+    </div>
+    <div class="user-login" ng-controller="loginCtrl">
+
+        <form class="login-form">
+            <!--Email<br>-->
+            <div class="email">
+                <input class="credentials" type="text" placeholder="Username" name="username"  ng-model="user.name"style="font-size:15pt">
+            </div>
+            <!--Password<br>-->
+            <div class="password">
+                <input class="credentials" type="password" placeholder="Password" name="password" ng-model="user.pass"style="font-size:15pt">
+            </div>
+
+            <br><br>
+        </form>
+        <div class="login-button" ng-click="login(user)">Login</div>
+        <div class="create-account-button">Create New Account</div>
+    </div>
+    <!--
+    <div class="website-subtitle">
+           <img src="img/new_logo.png" width="70%"><br>
+           VACATRON<br>
+
+    </div>
+-->
+</body>
+</html>

@@ -46,7 +46,7 @@ function err(e){
 }
 // The default port numbers are the standard ones [80,443] for convenience.
 // Change them to e.g. [8080,8443] to avoid privilege or clash problems.
-var ports = [80, 443];
+var ports = [8080, 8443];
 
 // The most common standard file extensions are supported.
 // The most common non-standard file extensions are excluded, with a message.
@@ -84,9 +84,9 @@ function start() {
     var httpsService = https.createServer(options, serve);
     httpsService.listen(ports[1], 'localhost');
     printAddresses();
-    var res = registerUser("Gavin","password1","gavin-parker@live.com");
-    console.log(res);
-    //login("Gavin","password1","gavin-parker@live.com");
+    //var res = registerUser("Gavin","password1","gavin-parker@live.com");
+    //console.log(res);
+    login("Gavin","password1","gavin-parker@live.com");
 }
 
 // Print out the server addresses.

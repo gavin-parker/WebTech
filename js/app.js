@@ -188,6 +188,20 @@ var start = function(){
       $scope.show[item] = 1;
     };
   })
+  .controller("loginCtrl",function($scope,$http) {
+        function login(user) {
+            var data = $.param({
+                json: JSON.stringify({
+                    name: user.name,
+                    pass: user.pass
+                })
+            
+            });
+            console.log(data);
+            $http.post("/login?text=",data);
+        }        
+    }
+  )
   .controller('mapCtrl', function($scope, $http){
     var myMarker = L.icon({
       iconUrl: './img/locationsmall.png',

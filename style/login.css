@@ -11,15 +11,15 @@ html, body{
   color: firebrick;
 }
 .website-title {
-  padding-top: 1%;
-  font-size: 70pt;
+  
+  font-size: 6.5em;
   font-family: 'Montserrat', sans-serif;
   height: 40%;
   color: white;
 }
 .website-subtitle {
   
-  font-size: 17pt;
+  font-size: 0.3em;
   font-family: 'Caveat', sans-serif;
   float: left;
   width: 100%;
@@ -29,7 +29,7 @@ html, body{
 }
 .user-login {
     font-family: 'Montserrat', sans-serif;
-    font-size: 15pt;
+    font-size: 1.5em;
     //width: 100%;
     //height: 80%;
     text-align: left;
@@ -53,16 +53,24 @@ html, body{
     width: 20%;
     top: 65%;
 }
+.newuser {
+    position: absolute;
+    width: 50%;
+    top: 80%;
+    color: white;
+    padding-left: 17%;
+}
 .create-account-button {
     float: right;
     position: absolute;
     width: 20%;
-    top: 80%;
+    top: 85%;
 }
+
 .login-form {
     position: absolute;
     width: 50%;
-    top: 51%;
+    top: 55%;
 }
 .login-button:hover, .create-account-button:hover {
     background: orangered;

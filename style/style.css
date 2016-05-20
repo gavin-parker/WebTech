@@ -24,6 +24,7 @@ body{
 @media screen and (min-width: 768px){
   .navbar{
     position:fixed;
+
   }
 }
 h1{
@@ -395,7 +396,6 @@ col-md-4{
 .navbar {
     width: 100%;
     z-index: 1;
-    margin-bottom: 0px;
       background-color: rgb(255,255,255);
     /* Adds shadow to the bottom of the bar */
 -webkit-box-shadow: 0px 0px 8px 0px #000000;
@@ -407,6 +407,15 @@ box-shadow: 0px 0px 8px 0px #000000;
     font-weight: bold;
     -webkit-backface-visibility: hidden;
 
+}
+.feed{
+  padding-top: 120px;
+}
+.filter{
+  width:60%;
+  float:none;
+  text-align: center;
+  margin: auto;
 }
 .navbar-brand {
   padding-left: 2%;
@@ -461,13 +470,7 @@ box-shadow: 0px 0px 8px 0px #000000;
   background-color: #FFC107;
   z-index: 2;
 }
-.feed{
-  width:70%;
-  height:100%;
-  margin:auto;
-  padding-top: 3%;
-  margin-top: 0;
-}
+
 .sidebar{
   width: 10%;
   height: 30%;

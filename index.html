@@ -8,23 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <script src="js/frameworks/angular.min.js"></script>
   <script src="js/frameworks/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
+  <script src="js/frameworks/jquery.js"></script>
   <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="js/app.js"></script>
   <script src="js/frameworks/angular-scroll.js"></script>
+  <script src="js/frameworks/bootstrap.js"></script>
   <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  <script src="js/app.js"></script>
   <script src="js/frameworks/countrySelect.min.js"></script>
-  <script src="js/trending.js"></script>
-
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
 
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'/>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/countrySelect.min.css" type="text/css" />
   <link rel="stylesheet" href="style/style.css" type="text/css" />
@@ -39,38 +32,36 @@
 
 <body ng-app="webApp" ng-controller="indexCtrl" class="small-header">
 
-  <div class="navbar navbar-default" ng-controller="navCtrl">
-
+  <div class="navbar navbar-default"alink="white"  ng-controller="navCtrl">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"/></a>
-      <div class="row nav-row">
-        <ul class="nav navbar-nav">
+      <div class="navbar-header">
+        <a class="navbar-brand"><img src="img/new_logo_small.png" width="60%" alt="Vacatron" /></a>
+        <ul class="nav navbar-nav ">
           <li>
-            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+            <a class="navbar-link" href="index.html#myCarousel" du-smooth-scroll>Home</a>
           </li>
           <li>
-            <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+            <a class="navbar-link" href="feed.html">Top Destinations</a>
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
+            <a class="navbar-link" href="index.html#diaries" du-smooth-scroll>Diaries</a>
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
+            <a  id="your-story" class="navbar-link" href="index.html#my-story" du-smooth-scroll>Your Story</a>
           </li>
           <li>
-            <a class="navbar-link" alink="white" href="#">Contact Us</a>
+            <a class="navbar-link" href="#contact">Contact Us</a>
           </li>
           <li>
-            <a class="" alink="white" href="login.html" ng-show="!loggedIn" >Sign in</a>
-            <a class="" alink="white" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
+            <a class="navbar-link" href="login.html" ng-show="!loggedIn" >Sign in</a>
+            <a class="navbar-link" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
           </li>
-          <li>
-              <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
-            </li>
+
+
         </ul>
-        <div class="navbar-text">
-        </div>
+
       </div>
+      <a class="navbar-link navbar-right" href="login.html" ><span class="welcone">{{welcome}}</span></a>
     </div>
 
   </div>
@@ -147,11 +138,14 @@
     </div>
     <div id="story-form" class="story-form">
       <div class="form-horizontal">
+        <div class="alert alert-danger"role="alert" ng-show="isError">
+          {{errorMessage}}
+        </div>
         <form name="storyForm" ng-show="{{!storyForm.$submitted}}" >
-          <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required/><br />
-          <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required/><br />
-          <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required/><br />
-          <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required/><br /><br />
+          <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required="required"/><br />
+          <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required="required"/><br />
+          <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required="required"/><br />
+          <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required="required"/><br /><br />
           <select class="form-control" ng-model="story.Price">
             <option value="">Please select a price</option>
             <option value="1">Bargain</option>
@@ -180,10 +174,10 @@
     <div class="form-horizontal">
       <h3>Submit a holiday</h3>
       <form name="storyForm" ng-show="{{!storyForm.$submitted}}" >
-        <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required/><br />
-        <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required/><br />
-        <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required/><br />
-        <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required/><br /><br />
+        <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required="required"/><br />
+        <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required="required"/><br />
+        <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required="required"/><br />
+        <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required="required"/><br /><br />
         <select class="form-control" ng-model="story.Price">
           <option value="">Please select a price</option>
           <option value="1">Bargain</option>
@@ -213,29 +207,24 @@
   </div>
 
 
-<div class="container-fluid"id="contact" >
-  <div class="row" >
-    <div class="text-center">
-      <strong>Contact Us</strong><br/><br/>
+<div class="container-fluid contact-us hidden-xs" id="contact" >
+  <div class="row">
+    <h1>CONTACT US</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <img src="img/gavin.png" width="10%"/>
+      <address>gp14958@my.bristol.ac.uk<br/>gavin-parker@live.com</address>
+    </div>
+    <div class="col-md-6">
+      <img src="img/mudit.png" width="10%"/>
+      <address>
+        mg14777@my.bristol.ac.uk<br/>
+        muditalok@gmail.com
+      </address>
 
     </div>
   </div>
-  <div class="row" >
-    <div class="col-md-4">
-      <address>
-        Gavin Parker <br/>
-        Email:<a href="mailto:gp14958@my.bristol.ac.uk"> gp14958@my.bristol.ac.uk</a><br/>
-               <a href="mailto:gavin-parker@live.com"> gavin-parker@live.com</a>
-      </address>
-    </div>
-    <div class="col-md-4">
-      <address>
-        Mudit Gupta<br/>
-        Email:<a href="mailto:mg14777@my.bristol.ac.uk"> mg14777@my.bristol.ac.uk</a><br/>
-      </address>
-    </div>
-
   </div>
-</div>
 </body>
 </html>

@@ -24,7 +24,7 @@ body{
 @media screen and (min-width: 768px){
   .navbar{
     position:fixed;
-
+    background-color: white;
   }
 }
 h1{
@@ -39,24 +39,53 @@ a {
 a:hover {
     color: orangered;
     text-decoration: none;
+    transition: all .2s;
 }
 .current-user {
-    height: 10%;
     color: orangered;
-    float: right;
-    width: 100%;
+    line-height: 20px;
 }
+
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
   color:orangered;
   text-decoration: none;
   border-bottom: 4px solid orangered;
 }
+.navbar-right{
+  vertical-align: middle;
+  padding-top: 0.5%;
+  color:orangered;
+}
+.welcome{
+  color:orangered;
+}
 col-md-4{
   padding: 5px;
 }
-#contact{
-  background-color: #757575;
-  color: white;
+.contact-us {
+    /*font-family: "Montserrat";*/
+    text-align: center;
+    color: white;
+    background: linear-gradient(rgba(255,255,0,0.1),rgba(0,0,0,0.9)),url(../img/contact.jpg);
+    background-size:cover;
+}
+
+.gavin, .mudit {
+    width: 50%;
+    /*font-family: "Caveat";*/
+    padding-top: 2%;
+}
+.mail {
+    font-size: 0.7em;
+}
+.gavin {
+    height: 85%;
+    float: left;
+}
+.mudit {
+    height: 85%;
+    float: right;
+
 }
 
 .arrow{
@@ -97,7 +126,7 @@ col-md-4{
 #myCarousel {
     width: 100%;
     height: 100%;
-    font-family: 'Fira Sans', sans-serif;
+    /*font-family: 'Fira Sans', sans-serif;*/
     font-size: 50pt;
     color: white;
     font-weight: bold;
@@ -133,7 +162,6 @@ col-md-4{
 #diaries {
      width: 100%;
     height: 100%;
-
 }
 .diary{
     width: 50%;
@@ -141,7 +169,7 @@ col-md-4{
     padding-left: 4%;
     padding-right: 4%;
     padding-top: 4%;
-    font-family: 'Montserrat';
+    /*font-family: 'Montserrat';*/
     font-size: 20pt;
     color: white;
     float: left;
@@ -200,7 +228,7 @@ col-md-4{
     height: 100%;
     background: url(../img/diary.png);
     background-size: 100%;
-    font-family: 'Montserrat';
+    /*font-family: 'Montserrat';*/
     font-size: 50pt;
     color: white;
 }
@@ -248,7 +276,7 @@ col-md-4{
 .trending-title {
     width: 100%;
     height: 0%;
-    font-family: 'Montserrat';
+    /*font-family: 'Montserrat';*/
     font-size: 30pt;
     font-weight: bold;
     text-align: center;
@@ -396,16 +424,12 @@ col-md-4{
 .navbar {
     width: 100%;
     z-index: 1;
-<<<<<<< HEAD
-=======
     margin: 0px;
->>>>>>> 95070f224bf981b1ce7b869820af3928060e93ac
       background-color: rgb(255,255,255);
     /* Adds shadow to the bottom of the bar */
 -webkit-box-shadow: 0px 0px 8px 0px #000000;
 -moz-box-shadow: 0px 0px 8px 0px #000000;
 box-shadow: 0px 0px 8px 0px #000000;
-    font-family: 'Open Sans' , sans-serif;
     font-size: 1.2em;
     color: white;
     font-weight: bold;
@@ -418,34 +442,19 @@ box-shadow: 0px 0px 8px 0px #000000;
 .filter{
   width:60%;
   float:none;
-  text-align: center;
+  text-align: left;
   margin: auto;
 }
-.navbar-brand {
-  padding-left: 2%;
-  font-size: 120%;
-    float: left;
-    color: darkorange;
-  width: 20%;
-}
+
 .logo {
    width: 20%;
    float: left;
    height: 100%;
 }
-.nav-row{
-  width:70%;
-  float:right;
-  text-align:center;
-}
 .navbar-link {
     color: white;
     font-weight: bold;
-<<<<<<< HEAD
-
-=======
     height: 2.6em;
->>>>>>> 95070f224bf981b1ce7b869820af3928060e93ac
 }
 .tabs {
     float: right;
@@ -459,6 +468,10 @@ box-shadow: 0px 0px 8px 0px #000000;
   float: left;
   margin-left: 20%;
   margin-top: 15%;
+  color: white;
+}
+.title{
+  background-color: rgba(0,0,0,0);
   color: white;
 }
 .page-header{

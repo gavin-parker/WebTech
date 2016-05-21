@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <!--[if IE]>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 <![endif]-->
@@ -20,7 +20,6 @@
 
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/style.css" type="text/css" />
 
@@ -33,50 +32,47 @@
 
 <body ng-controller="FeedCtrl" ng-app="webApp">
 
-  <div class="navbar navbar-default" ng-controller="navCtrl">
 
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
-      <div class="row nav-row">
-        <ul class="nav navbar-nav">
-          <li>
-            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
-          </li>
-          <li>
-            <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
-          </li>
-          <li>
-            <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
-          </li>
-          <li>
-            <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
-          </li>
-          <li>
-            <a class="navbar-link" alink="white" href="#">Contact Us</a>
-          </li>
-          <li>
-            <a class="" alink="white" href="login.html" ng-show="!loggedIn" >Sign in</a>
-            <a class="" alink="white" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
-          </li>
-          <li>
-              <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
+    <div class="navbar navbar-default" ng-controller="navCtrl">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand"><img src="img/new_logo_small.png" width="60%" alt="Vacatron" /></a>
+          <ul class="nav navbar-nav ">
+            <li>
+              <a class="navbar-link"  href="index.html#myCarousel" du-smooth-scroll>Home</a>
             </li>
-        </ul>
-        <div class="navbar-text">
+            <li>
+              <a class="navbar-link"  href="feed.html">Top Destinations</a>
+            </li>
+            <li>
+              <a class="navbar-link" href="index.html#diaries" du-smooth-scroll>Diaries</a>
+            </li>
+            <li>
+              <a  id="your-story" class="navbar-link" href="index.html#my-story" du-smooth-scroll>Your Story</a>
+            </li>
+            <li>
+              <a class="navbar-link"  href="index.html#contact">Contact Us</a>
+            </li>
+            <li>
+              <a class="navbar-link"  href="login.html" ng-show="!loggedIn" >Sign in</a>
+              <a class="navbar-link"  href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
+            </li>
+
+
+          </ul>
+
         </div>
+        <a class="navbar-link navbar-right"  href="login.html" ><span class="welcone">{{welcome}}</span></a>
       </div>
-      <div class="row filter">
-        <input class="form-control" type="search" ng-model="query.text" placeholder="Filter"/>
 
-      </div>
     </div>
-
-  </div>
 
 
   <a href="submit.html" class="postButton"><button class="btn btn-default" >Submit A Holiday</button></a>
   <div class="container feed">
-
+    <div class="row filter">
+        <input class="form-control" type="search" ng-model="query.text" placeholder="Filter"/>
+      </div>
     <div class="col-md-4" ng-repeat="hol in holidays | filter:query.text">
       <div class="thumbnail">
         <div class="frame">

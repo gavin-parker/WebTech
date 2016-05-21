@@ -7,28 +7,11 @@ html, body{
   width: 100%;
   background: linear-gradient(rgba(0,0, 0, 0.2),rgba(0, 0,0, 0.5)),url(../img/login-wall.jpg);
   //background: rgba(0,0,0,0.1);
-  background-size: 100%;
+  background-size: cover;
   color: firebrick;
 }
-.website-title {
-  padding-top: 65px;
-  font-size: 6.5em;
-  font-family: 'Montserrat', sans-serif;
-  height: 40%;
-  color: white;
-}
-.website-subtitle {
 
-  font-size: 0.3em;
-  font-family: 'Caveat', sans-serif;
-  float: left;
-  width: 100%;
-  text-align: center;
-  color: white;
-
-}
 .user-login {
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.5em;
     //width: 100%;
     //height: 80%;
@@ -37,21 +20,24 @@ html, body{
     //float: right;
     padding-left: 30%;
 }
-.login-button, .create-account-button {
-    width: 20%;
-    text-align: center;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    border: 2px solid white;
-    color: white;
-    margin-left: 11%;
+.login{
+  width:20%;
+  background-color:rgba(255, 255, 255,0.8);
 
 }
+.form-group{
+  float: none;
+  text-align: center;
+  margin: auto;
+}
+.form-control{
+  float: none;
+  text-align: center;
+  margin: auto;
+}
+
 .login-button {
-    float: left;
-    position: absolute;
-    width: 20%;
-    top: 65%;
+    width: 15%;
 }
 .newuser {
     position: absolute;

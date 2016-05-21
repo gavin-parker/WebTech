@@ -1,105 +1,95 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="style/login.css" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Caveat|Fira+Sans|Montserrat|Sniglet|Work+Sans' rel='stylesheet' type='text/css'>
-  <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <script src="js/frameworks/angular.min.js"></script>
   <script src="js/frameworks/angular-animate.min.js"></script>
+  <script src="js/frameworks/jquery.js"></script>
   <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="js/app.js"></script>
   <script src="js/frameworks/angular-scroll.js"></script>
-  <script src="js/frameworks/countrySelect.min.js"></script>
-
+  <script src="js/frameworks/bootstrap.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
   <script src="js/app.js"></script>
-  <script async src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+  <script src="js/frameworks/countrySelect.min.js"></script>
 
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/countrySelect.min.css" type="text/css" />
   <link rel="stylesheet" href="style/style.css" type="text/css" />
+  <link rel="stylesheet" href="style/login.css" type="text/css" />
+
   <link href="style/animations.css" rel='stylesheet' type='text/css'/>
+
+
+
   <title>Holiday Recommender</title>
 </head>
 <body ng-app="webApp" ng-controller="loginCtrl">
 
 
-    <div class="navbar navbar-default" ng-controller="navCtrl">
 
+    <div class="navbar navbar-default" ng-controller="navCtrl">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><img src="img/new_logo1.png" width="30%"></a>
-        <div class="row nav-row">
-          <ul class="nav navbar-nav">
+        <div class="navbar-header">
+          <a class="navbar-brand"><img src="img/new_logo_small.png" width="60%" alt="Vacatron" /></a>
+          <ul class="nav navbar-nav ">
             <li>
-              <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+              <a class="navbar-link"  href="index.html#myCarousel" du-smooth-scroll>Home</a>
             </li>
             <li>
-              <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
+              <a class="navbar-link"  href="feed.html">Top Destinations</a>
             </li>
             <li>
-              <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
+              <a class="navbar-link" href="index.html#diaries" du-smooth-scroll>Diaries</a>
             </li>
             <li>
-              <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
+              <a  id="your-story" class="navbar-link" href="index.html#my-story" du-smooth-scroll>Your Story</a>
             </li>
             <li>
-              <a class="navbar-link" alink="white" href="#">Contact Us</a>
+              <a class="navbar-link"  href="index.html#contact">Contact Us</a>
             </li>
             <li>
-              <a class="" alink="white" href="login.html" ng-show="!loggedIn" >Sign in</a>
-              <a class="" alink="white" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
+              <a class="navbar-link"  href="login.html" ng-show="!loggedIn" >Sign in</a>
+              <a class="navbar-link"  href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
             </li>
-            <li>
-                <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
-              </li>
+
+
           </ul>
-          <div class="navbar-text">
-          </div>
+
         </div>
+        <a class="navbar-link navbar-right"  href="login.html" ><span class="welcone">{{welcome}}</span></a>
       </div>
 
     </div>
-    <div class="website-title">
-           <img src="img/new_logo1.png" width="10%"><br/>
-           VACATRON<br/>
-           <div class="website-subtitle">
+    <div class="jumbotron title">
+           <img src="img/new_logo1.png" width="10%"/><br/>
+           <h1>VACATRON</h1><br/>
+           <h2>
             HOLIDAY LIKE NEVER BEFORE
-           </div>
-    </div>
-    <div class="user-login" >
+          </h2>
+          <br/>
+          <br/>
+          <div class="container-fluid">
+              <div class="form-group">
+                      <input type="text" class="form-control login"placeholder="Username" name="username"  ng-model="user.name"/><br/>
+                      <input type="password" class="form-control login" placeholder="Password" name="password" ng-model="user.pass"/><br/><br/><br/><br/>
+              </div>
 
-        <form class="login-form">
-            <!--Email<br/>-->
-            <div class="email">
-                <input class="credentials" type="text" placeholder="Username" name="username"  ng-model="user.name"style="font-size:15pt">
-            </div>
-            <!--Password<br/>-->
-            <div class="password">
-                <input class="credentials" type="password" placeholder="Password" name="password" ng-model="user.pass"style="font-size:15pt">
-            </div>
+          </div>
 
-            <br/><br/>
-        </form>
+          <button class="btn btn-default login-button" ng-click="login(user)">Login</button>
+          <h3>New User ?</h3>
+          <button class="btn btn-default login-button" ng-click="create(user)">Create New Account</button>
+          <div class="alert alert-danger"role="alert" ng-show="isError">
+            {{errorMessage}}
+          </div>
+          <div class="alert alert-success"role="alert" ng-show="isSuccess">
+            {{successMessage}}
+          </div>
+      </div>
 
-        <div class="login-button" ng-click="login(user)">Login</div>
-        <div class="newuser">New User ?<br/></div>
-        <div class="create-account-button" ng-click="create(user)">Create New Account</div>
-
-    </div>
-    <div class="alert alert-danger"role="alert" ng-show="isError">
-      {{errorMessage}}
-    </div>
-    <div class="alert alert-success"role="alert" ng-show="isSuccess">
-      {{successMessage}}
-    </div>
     <!--
     <div class="website-subtitle">
            <img src="img/new_logo.png" width="70%"><br/>

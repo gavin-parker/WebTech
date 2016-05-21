@@ -115,6 +115,8 @@ var start = function(){
     $scope.buttonText = "Share";
     $scope.name="";
     $scope.loggedIn = false;
+    $scope.isError = false;
+    $scope.errorMessage = "";
     $("#country").countrySelect();
 
     if(typeof(Storage) !== "undefined"){
@@ -148,6 +150,38 @@ var start = function(){
 
     $scope.submit = function(story){
       $scope.story = angular.copy(story);
+
+      if($scope.story.Name === undefined){
+        $scope.errorMessage = "Please enter a name";
+        $scope.isError = true;
+        return;
+      }
+      if($scope.story.Destination === undefined){
+        $scope.errorMessage = "Please enter a destination city";
+        $scope.isError = true;
+        return;
+      }
+      if($scope.story.Email === undefined){
+        $scope.errorMessage = "Please enter an email";
+        $scope.isError = true;
+        return;
+      }
+      if($scope.story.Description === undefined){
+        $scope.errorMessage = "Please enter a description";
+        $scope.isError = true;
+        return;
+      }
+      if($scope.story.Weather === undefined){
+        $scope.errorMessage = "Please select a weather option";
+        $scope.isError = true;
+        return;
+      }
+      if($scope.story.Price === undefined){
+        $scope.errorMessage = "Please select a price option";
+        $scope.isError = true;
+        return;
+      }
+      $scope.isError=false;
       console.log(story);
          $scope.buttonText = "Done!";
          story.Country = $("#country").countrySelect("getSelectedCountryData").name;
@@ -354,9 +388,23 @@ $(window).scroll(function() {
   if ($(this).scrollTop()> 300) {
     $("#diary1-text").fadeIn();
     $("#diary2-text").fadeIn();
+      /*
+    if ($(this).scrollTop() < 1250) {
+        $("#diaries").css("border-bottom","4px solid orangered");
+        $("#diaries").css("color","orangered");
+    }
+    else {
+        $("#diaries").css("border-bottom","0px");
+        $("#diaries").css("color","#777");
+    }
+      */
   } else {
     $("#diary1-text").fadeOut();
     $("#diary2-text").fadeOut();
+      /*
+    $("#diaries").css("border-bottom","0px");
+    $("#diaries").css("color","#777");
+        */
   }
 
 });
@@ -369,11 +417,34 @@ $(window).scroll(function() {
     $("#diary4-text").fadeOut();
   }
   if ($(this).scrollTop()> 1250) {
+      /*
+    if ($(this).scrollTop() < 1850) {
+        $("#your-story").css("border-bottom","4px solid orangered");
+        $("#your-story").css("color","orangered");
+    }
+    else {
+        $("#your-story").css("border-bottom","0px");
+        $("#your-story").css("color","#777");
+    }
+    */
     $("#my-story-title").fadeIn();
     $("#story-form").fadeIn();
   } else {
     $("#my-story-title").fadeOut();
     $("#story-form").fadeOut();
+      /*
+    $("#your-story").css("border-bottom","0px");
+    $("#your-story").css("color","#777");
+    */
+  }
+  if ($(this).scrollTop()> 2450) {
+    $("#contact-title").fadeIn();
+    $("#gavin").fadeIn();
+    $("#mudit").fadeIn();
+  } else {
+    $("#contact-title").fadeOut();
+    $("#gavin").fadeOut();
+    $("#mudit").fadeOut();
   }
 
 });

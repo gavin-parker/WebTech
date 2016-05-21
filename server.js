@@ -357,6 +357,7 @@ function getImage(location,country){
             var data = JSON.parse(body);
             console.log(body);
             //console.log(data);
+            try{
             if(data.hits[0] !== null){
             var imageURL = data.hits[0].webformatURL;
 
@@ -366,6 +367,9 @@ function getImage(location,country){
           }else{
             getBackupImage(location,country);
           }
+        }catch(error){
+          console.log("error getting image");
+        }
         });
       });
 }
@@ -402,7 +406,14 @@ function submitHoliday(story){
   console.log(story.desc);
   console.log(story.country);
 
+
+  if(story.name === undefined || story.dest === undefined || story.email === undefined || story.desc === undefined){
+    return;
+  }
   if(story.name === "" || story.dest === "" || story.email === "" || story.desc === ""){
+    return;
+  }
+  if(story.name === null || story.dest === null || story.email === null || story.desc === null){
     return;
   }
   try{

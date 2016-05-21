@@ -351,9 +351,23 @@ $(window).scroll(function() {
   if ($(this).scrollTop()> 300) {
     $("#diary1-text").fadeIn();
     $("#diary2-text").fadeIn();
+      /*
+    if ($(this).scrollTop() < 1250) {
+        $("#diaries").css("border-bottom","4px solid orangered");
+        $("#diaries").css("color","orangered");
+    }
+    else {
+        $("#diaries").css("border-bottom","0px");
+        $("#diaries").css("color","#777");
+    }
+      */
   } else {
     $("#diary1-text").fadeOut();
     $("#diary2-text").fadeOut();
+      /*
+    $("#diaries").css("border-bottom","0px");
+    $("#diaries").css("color","#777");
+        */
   }
 
 });
@@ -366,11 +380,34 @@ $(window).scroll(function() {
     $("#diary4-text").fadeOut();
   }
   if ($(this).scrollTop()> 1250) {
+      /*
+    if ($(this).scrollTop() < 1850) {
+        $("#your-story").css("border-bottom","4px solid orangered");
+        $("#your-story").css("color","orangered");
+    }
+    else {
+        $("#your-story").css("border-bottom","0px");
+        $("#your-story").css("color","#777");
+    }
+    */
     $("#my-story-title").fadeIn();
     $("#story-form").fadeIn();
   } else {
     $("#my-story-title").fadeOut();
     $("#story-form").fadeOut();
+      /*
+    $("#your-story").css("border-bottom","0px");
+    $("#your-story").css("color","#777");
+    */
+  }
+  if ($(this).scrollTop()> 2450) {
+    $("#contact-title").fadeIn();
+    $("#gavin").fadeIn();
+    $("#mudit").fadeIn();
+  } else {
+    $("#contact-title").fadeOut();
+    $("#gavin").fadeOut();
+    $("#mudit").fadeOut();
   }
 
 });

@@ -24,7 +24,7 @@
 
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'/>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Caveat|Montserrat' rel='stylesheet' type='text/css'/>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/countrySelect.min.css" type="text/css" />
   <link rel="stylesheet" href="style/style.css" type="text/css" />
@@ -46,23 +46,23 @@
       <div class="row nav-row">
         <ul class="nav navbar-nav">
           <li>
-            <a class="navbar-link" alink="white" href="index.html" du-smooth-scroll>Home</a>
+            <a class="navbar-link" alink="white" href="index.html#myCarousel" du-smooth-scroll>Home</a>
           </li>
           <li>
             <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
+            <a class="navbar-link"alink="white" href="index.html#diaries" du-smooth-scroll>Diaries</a>
           </li>
           <li>
-            <a  class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
+            <a  id="your-story" class="navbar-link"alink="white" href="index.html#my-story" du-smooth-scroll>Your Story</a>
           </li>
           <li>
-            <a class="navbar-link" alink="white" href="#">Contact Us</a>
+            <a class="navbar-link" alink="white" href="#contact">Contact Us</a>
           </li>
           <li>
-            <a class="" alink="white" href="login.html" ng-show="!loggedIn" >Sign in</a>
-            <a class="" alink="white" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
+            <a class="navbar-link" alink="white" href="login.html" ng-show="!loggedIn" >Sign in</a>
+            <a class="navbar-link" alink="white" href="index.html" ng-show="loggedIn" ng-click="logout()">Sign out</a>
           </li>
           <li>
               <a class="navbar-link navbar-right" alink="white" href="login.html" ><div class="current-user">{{welcome}}</div></a>
@@ -213,29 +213,20 @@
   </div>
 
 
-<div class="container-fluid"id="contact" >
-  <div class="row" >
-    <div class="text-center">
-      <strong>Contact Us</strong><br/><br/>
-
+<div class="contact-us" id="contact" >
+    <div id="contact-title" class="contact-title">CONTACT US</div>
+    <div id="gavin" class="gavin">
+        Gavin Parker<br>
+        <img src="img/gavin.png" width="25%">
+        <div class="mail">gp14958@my.bristol.ac.uk<br>gavin-parker@live.com</div>
     </div>
-  </div>
-  <div class="row" >
-    <div class="col-md-4">
-      <address>
-        Gavin Parker <br/>
-        Email:<a href="mailto:gp14958@my.bristol.ac.uk"> gp14958@my.bristol.ac.uk</a><br/>
-               <a href="mailto:gavin-parker@live.com"> gavin-parker@live.com</a>
-      </address>
+    <div id="mudit" class="mudit">
+        Mudit Gupta<br>
+        <img src="img/mudit.png" width="25%">
+        <div class="mail">
+            mg14777@my.bristol.ac.uk<br>
+            muditalok@gmail.com
+        </div>
     </div>
-    <div class="col-md-4">
-      <address>
-        Mudit Gupta<br/>
-        Email:<a href="mailto:mg14777@my.bristol.ac.uk"> mg14777@my.bristol.ac.uk</a><br/>
-      </address>
-    </div>
-
-  </div>
-</div>
 </body>
 </html>

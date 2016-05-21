@@ -212,6 +212,8 @@ var start = function(){
   .controller("loginCtrl",function($scope,$http, $window) {
     $scope.isError = false;
     $scope.errorMessage="";
+    $scope.isSuccess = false;
+    $scope.successMessage="";
     console.log("hi");
     $scope.create = function(user){
       if(user === undefined){
@@ -230,7 +232,8 @@ var start = function(){
             $scope.isError = true;
           }else{
             $scope.isError = false;
-
+            $scope.isSuccess = true;
+            $scope.successMessage = "Welcome, " + user.name + ". Click 'Login' to continue";
           }
         },function(){
           console.log("oh dear");

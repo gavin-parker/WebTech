@@ -6,6 +6,13 @@ while the server stores more as holidays are added.
 If safe is too slow, you could download the files from here:
 https://github.com/gavin-parker/WebTech
 
+/////Client Side/////
+The pages have been validated for HTML5 polyglot.
+Pages are delivered properly as XHTML to new browsers.
+em & % has been used to account for different screen resolutions.
+
+/////Old Browsers/////
+On testing the site on IE11 it degrades gracefully. Most features are retained except some animations and fonts. The carousel doesn't rotate automatically.
 
 ///////Startup //////
 To run the server, navigate to the folder containing server.js and run 'node server'
@@ -41,9 +48,11 @@ Though rough around the edges, the site has been designed with mobile in mind,
 so some elements will collapse in and flashy features will be removed when
 viewing on a small device.
 
-The pages have been validated for HTML5 polyglot.
+
+/////Animations/////
 There is some css animation on buttons and the tiled images on the main page as
 well as some js animation on the holiday submission form.
+Javascript animation is used for fade in effect on scrolling.
 
-The weather/price icons are vector graphics made in inkscape while the logo is a png made in
-GIMP.
+/////Images & Drawing 
+The weather/price icons are vector graphics made in inkscape while the logo is a png made in GIMP.

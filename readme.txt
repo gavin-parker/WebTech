@@ -1,6 +1,16 @@
-///////Startup //////
-To run the servewr, navigate to the folder containing server.js and run 'node server'
+Gavin Parker - gp14958
+Mudit Gupta - mg14777
 
+Firstly, sorry for the file size! (lots of images). Some images are needed to demonstrate functionality,
+while the server stores more as holidays are added.
+If safe is too slow, you could download the files from here:
+https://github.com/gavin-parker/WebTech
+
+
+///////Startup //////
+To run the server, navigate to the folder containing server.js and run 'node server'
+
+Without the server, a lot of the page elements will be missing.
 //// Dependencies /////
 Some packages have been used for the server that can be installed through npm:
 bcryptjs
@@ -32,6 +42,8 @@ so some elements will collapse in and flashy features will be removed when
 viewing on a small device.
 
 The pages have been validated for HTML5 polyglot.
+There is some css animation on buttons and the tiled images on the main page as
+well as some js animation on the holiday submission form.
 
-Gavin Parker
-Mudit Gupta
+The weather/price icons are vector graphics made in inkscape while the logo is a png made in
+GIMP.
